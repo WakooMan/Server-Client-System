@@ -1,5 +1,4 @@
-﻿using SharedClasses.Messages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,26 +7,15 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace SharedClasses.Xml
-{
+namespace SharedClasses{
     public class XDocumentMessageDispatcher : MessageDispatcher<XDocument>
     {
-        readonly List<(string xPathExpression, Func<XDocument, Task<XDocument>> targetMethod)> _handlers = new List<(string xPathExpression, Func<XDocument, Task<XDocument>> targetMethod)>(); 
-        public override async Task<XDocument> DispatchAsync(XDocument message)
-        {
-            foreach ( var (xpath,target) in _handlers)
-            {
-                if ((message.XPathEvaluate(xpath) as bool?) == true)
-                {
-                    return await target(message);
-                }
-            }
-            //No Handler what to do?
-            return null;
-        }
+        
 
         public override void Register<TParam, TResult>(Func<TParam, Task<TResult>> target)
         {
+            if (!HasAttribute(target.Method))
+                throw new Exception("Missing Required Route Attribute");
             var XPathRouteExpression = GetXPathRoute(target.Method);
 
             var wrapper = new Func<XDocument, Task<XDocument>>(async xml =>
@@ -40,11 +28,13 @@ namespace SharedClasses.Xml
                 else
                     return null;
             });
-            _handlers.Add((XPathRouteExpression,wrapper));
+            AddHandler(GetAttribute(target.Method),wrapper);
         }
 
         public override void Register<TParam>(Func<TParam, Task> target)
         {
+            if (!HasAttribute(target.Method))
+                throw new Exception("Missing Required Route Attribute");
             var XPathRouteExpression = GetXPathRoute(target.Method);
 
             var wrapper = new Func<XDocument, Task<XDocument>>(async xml =>
@@ -53,8 +43,16 @@ namespace SharedClasses.Xml
                 await target(Param);
                 return null;
             });
-            _handlers.Add((XPathRouteExpression, wrapper));
+            AddHandler(GetAttribute(target.Method), wrapper);
         }
+
+        protected RouteAttribute GetAttribute(MethodInfo mi) => mi.GetCustomAttribute<RouteAttribute>();
+
+        protected bool HasAttribute(MethodInfo mi)
+            => GetAttribute(mi) != null;
+
+        protected override bool IsMatch(RouteAttribute route, XDocument message)
+            => (message.XPathEvaluate($"boolean({route.Path})") as bool?) ?? false;
 
         private string GetXPathRoute(MethodInfo methodInfo)
         {

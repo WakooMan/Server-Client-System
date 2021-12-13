@@ -1,4 +1,4 @@
-﻿using SharedClasses.Messages;
+﻿using SharedClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Server
 {
     public static  class MessageHandler
     {
-        [Route("/Message[@type='Request' and @action='HeartBeat']")]
+        [XPathRoute("/Message[@type='Request' and @action='HeartBeat']")]
         public static Task<HeartBeatResponseMessage> HandleMessage(HeartBeatRequestMessage request)
         {
             Received(request);
@@ -23,7 +23,7 @@ namespace Server
             return Task.FromResult(response);
         }
 
-        [Route("/Message[@type='Request' and @action='SubmitBasket']")]
+        [XPathRoute("/Message[@type='Request' and @action='SubmitBasket']")]
         public static Task<SubmitBasketResponseMessage> HandleMessage(SubmitBasketRequestMessage request)
         {
             Received(request);

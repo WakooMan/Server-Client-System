@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace SharedClasses.Xml
-{
+namespace SharedClasses{
     public class XmlChannel : NetworkChannel<XmlMessageProtocol, XDocument> { }
     public class XmlClientChannel : ClientChannel<XmlMessageProtocol, XDocument> { }
 }

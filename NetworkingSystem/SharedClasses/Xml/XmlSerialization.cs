@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace SharedClasses.Xml
-{
+namespace SharedClasses{
     public static class XmlSerialization
     {
         public static XDocument Serialize<T>(T instance) => Serialize(typeof(T),instance);

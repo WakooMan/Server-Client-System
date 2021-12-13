@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SharedClasses
-{
+namespace SharedClasses{
     public abstract class NetworkChannel<TProtocol, TMessageType> : IDisposable
         where TProtocol : Protocol<TMessageType>,new()
     {

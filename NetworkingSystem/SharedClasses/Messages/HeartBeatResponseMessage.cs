@@ -1,7 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace SharedClasses.Messages
-{
+namespace SharedClasses{
     [XmlRoot("Message")]
     public class HeartBeatResponseMessage : Message
     {

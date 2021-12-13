@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedClasses.Messages
-{
-    public class RouteAttribute: Attribute
+namespace SharedClasses{
+    [AttributeUsage(AttributeTargets.Method)]
+    public abstract class RouteAttribute: Attribute
     {
         public string Path { get; }
 

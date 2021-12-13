@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SharedClasses.Messages
-{
+namespace SharedClasses{
     [XmlRoot("Message")]
     public class SubmitBasketRequestMessage : Message
     {

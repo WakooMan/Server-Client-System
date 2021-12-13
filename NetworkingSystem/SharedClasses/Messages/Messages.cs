@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SharedClasses.Messages
-{
+namespace SharedClasses{
     public enum MessageType
     {
         Response,Request

@@ -6,8 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedClasses
-{
+namespace SharedClasses{
     public abstract class Protocol<TMessageType>
     {
         //This is the size of an int in bytes.

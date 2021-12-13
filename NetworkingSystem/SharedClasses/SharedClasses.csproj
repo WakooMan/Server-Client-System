@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="ClientChannel.cs" />
     <Compile Include="Json\JsonMessageProtocol.cs" />
+    <Compile Include="Json\JsonRouteAttribute.cs" />
+    <Compile Include="Json\JsonSerialization.cs" />
     <Compile Include="MessageDispatcher.cs" />
     <Compile Include="Messages\HeartBeatRequestMessage.cs" />
     <Compile Include="Messages\HeartBeatResponseMessage.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Xml\XmlChannelTypeDef.cs" />
     <Compile Include="Xml\XmlMessageProtocol.cs" />
     <Compile Include="Xml\XmlSerialization.cs" />
+    <Compile Include="Xml\XPathRouteAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
