@@ -1,0 +1,6 @@
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkingSystem\bin\Debug\NetworkingSystem.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkingSystem\bin\Debug\NetworkingSystem.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkingSystem\obj\Debug\NetworkingSystem.csproj.AssemblyReference.cache
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkingSystem\obj\Debug\NetworkingSystem.csproj.CoreCompileInputs.cache
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkingSystem\obj\Debug\NetworkingSystem.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkingSystem\obj\Debug\NetworkingSystem.pdb

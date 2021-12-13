@@ -1,0 +1,13 @@
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Client.exe.config
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Client.exe
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Client.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\SharedClasses.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\SharedClasses.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Client.csproj.AssemblyReference.cache
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Client.exe
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Client.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Newtonsoft.Json.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Newtonsoft.Json.xml

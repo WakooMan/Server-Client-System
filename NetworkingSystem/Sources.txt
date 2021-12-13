@@ -1,0 +1,2 @@
+https://www.youtube.com/channel/UCUg_M6wvaS-DhHpFpW7aC6w for C# implementation of networking
+https://www.youtube.com/watch?v=2hNdkYInj4g&t=3001s For getting some ideas on how to add features to the first one.

@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f19cecf4-5052-4cb1-b674-dce5fc580f56": {
+      "ProjectGuid": "f19cecf4-5052-4cb1-b674-dce5fc580f56",
+      "DisplayName": "NetworkingSystem",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "adbdfb9b-fd99-4776-adb9-9faedfb64e81": {
+      "ProjectGuid": "adbdfb9b-fd99-4776-adb9-9faedfb64e81",
+      "DisplayName": "SharedClasses",
+      "ColorIndex": 1
+    },
+    "43fd6c9c-5c5b-4b8f-af98-80d3333af838": {
+      "ProjectGuid": "43fd6c9c-5c5b-4b8f-af98-80d3333af838",
+      "DisplayName": "Client",
+      "ColorIndex": 2
+    },
+    "94882fd3-3705-4303-981d-33b550cdb4eb": {
+      "ProjectGuid": "94882fd3-3705-4303-981d-33b550cdb4eb",
+      "DisplayName": "Server",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
