@@ -33,7 +33,14 @@ namespace SharedClasses
         }
 
         public static JObject Serialize(object Object) => JObject.FromObject(Object,_serializer);
+
+        internal static object Serialize(Type type, JObject message)
+        {
+            throw new NotImplementedException();
+        }
+
         public static JObject Deserialize(string json) => JObject.Parse(json);
+        public static T Deserialize<T>(JObject obj) => obj.ToObject<T>();
 
         public static object ToObject(Type type, JObject source) => source.ToObject(type);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,24 +20,29 @@ namespace SharedClasses{
     public abstract class Message
     {
         [XmlAttribute("id")]
+        [JsonProperty("id")]
         public string Id { get; set; }
 
         [XmlAttribute("type")]
+        [JsonProperty("type")]
         public MessageType Type { get; set; }
 
         [XmlAttribute("action")]
+        [JsonProperty("action")]
         public string Action { get; set; }
     }
 
     public class POSData
     {
         [XmlAttribute("id")]
+        [JsonProperty("id")]
         public string Id { get; set; }
     }
 
     public class Result
     {
         [XmlAttribute("status")]
+        [JsonProperty("status")]
         public Status Status { get; set; }
     }
 }

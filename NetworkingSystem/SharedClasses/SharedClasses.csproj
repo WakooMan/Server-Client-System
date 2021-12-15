@@ -45,13 +45,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientChannel.cs" />
+    <Compile Include="Json\JsonChannelTypeDef.cs" />
+    <Compile Include="Json\JsonMessageDispatcher.cs" />
     <Compile Include="Json\JsonMessageProtocol.cs" />
     <Compile Include="Json\JsonRouteAttribute.cs" />
     <Compile Include="Json\JsonSerialization.cs" />
     <Compile Include="MessageDispatcher.cs" />
     <Compile Include="Messages\HeartBeatRequestMessage.cs" />
     <Compile Include="Messages\HeartBeatResponseMessage.cs" />
-    <Compile Include="Messages\Messages.cs" />
+    <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\RouteAttribute.cs" />
     <Compile Include="Messages\SubmitBasketResponseMessage.cs" />
     <Compile Include="Messages\SubmitBasketRequestMessage.cs" />

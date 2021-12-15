@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,8 @@ namespace SharedClasses{
     [XmlRoot("Message")]
     public class SubmitBasketRequestMessage : Message
     {
-        [XmlElement("POS")]
+        [XmlElement("POSData")]
+        [JsonProperty("posData")]
         public POSData POSData { get; set; }
 
         public SubmitBasketRequestMessage()

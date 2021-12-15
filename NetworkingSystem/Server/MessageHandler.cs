@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public static  class MessageHandler
+    public  class MessageHandler
     {
         [XPathRoute("/Message[@type='Request' and @action='HeartBeat']")]
+        [JsonRoute("$.action","HeartBeat")]
         public static Task<HeartBeatResponseMessage> HandleMessage(HeartBeatRequestMessage request)
         {
             Received(request);
@@ -24,6 +25,7 @@ namespace Server
         }
 
         [XPathRoute("/Message[@type='Request' and @action='SubmitBasket']")]
+        [JsonRoute("$.action", "SubmitBasket")]
         public static Task<SubmitBasketResponseMessage> HandleMessage(SubmitBasketRequestMessage request)
         {
             Received(request);

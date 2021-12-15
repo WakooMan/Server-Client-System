@@ -10,7 +10,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            EchoServer server = new EchoServer();
+            SocketServer server = new SocketServer();
             server.Start();
             Console.WriteLine("Echo Server is running.");
             Console.ReadLine();

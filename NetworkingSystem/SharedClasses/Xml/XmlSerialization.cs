@@ -24,6 +24,6 @@ namespace SharedClasses{
 
         public static T Deserialize<T>(XDocument xml) => (T)Deserialize(typeof(T), xml);
 
-        private static object Deserialize(Type type, XDocument xml)=> new XmlSerializer(type).Deserialize(new StringReader(xml.ToString()));
+        public static object Deserialize(Type type, XDocument xml)=> new XmlSerializer(type).Deserialize(new StringReader(xml.ToString()));
     }
 }

@@ -1,13 +1,16 @@
-﻿using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
+using System.Xml.Serialization;
 
 namespace SharedClasses{
     [XmlRoot("Message")]
     public class HeartBeatResponseMessage : Message
     {
         [XmlElement("Result")]
+        [JsonProperty("result")]
         public Result Result { get; set; }
 
-        [XmlElement("POS")]
+        [XmlElement("POSData")]
+        [JsonProperty("posData")]
         public POSData POSData { get; set; }
 
         public HeartBeatResponseMessage()

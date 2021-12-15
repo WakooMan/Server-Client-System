@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public class EchoServer
+    public class SocketServer
     {
         readonly XDocumentMessageDispatcher messageDispatcher = new XDocumentMessageDispatcher();
+        //readonly JsonMessageDispatcher messageDispatcher = new JsonMessageDispatcher();
 
-        public EchoServer()
+        public SocketServer()
         {
-            messageDispatcher.Register<HeartBeatRequestMessage, HeartBeatResponseMessage>(MessageHandler.HandleMessage);
-            messageDispatcher.Register<SubmitBasketRequestMessage, SubmitBasketResponseMessage>(MessageHandler.HandleMessage);
+            messageDispatcher.Bind<MessageHandler>();
         }
 
         public void Start(int port = 9000)
@@ -41,23 +41,11 @@ namespace Server
                     null).ConfigureAwait(false);
                 Console.WriteLine("ECHO SERVER :: CLIENT CONNECTED");
 
-                var client = new XmlChannel();
-                client.OnMessage(async message => {
-                    var response = await messageDispatcher.DispatchAsync(message).ConfigureAwait(false);
-                    if (response != null)
-                    {
-                        try
-                        {
-                            await client.SendAsync(response).ConfigureAwait(false);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex);
-                        }
-                    }
-                });
+                var channel = new XmlChannel();
+                //var channel = new JsonChannel();
+                messageDispatcher.Bind(channel);
 
-                client.Attach(clientsocket);
+                channel.Attach(clientsocket);
                 while (true) { }
 
             }while (true);

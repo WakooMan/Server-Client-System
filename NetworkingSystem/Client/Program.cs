@@ -14,20 +14,23 @@ namespace Client
     internal class Program
     {
         static readonly XmlClientChannel Channel = new XmlClientChannel();
-        static readonly XDocumentMessageDispatcher MessageDispatcher = new XDocumentMessageDispatcher();
+        //static readonly JsonClientChannel Channel = new JsonClientChannel();
         static async Task Main(string[] args)
         {
-            MessageDispatcher.Register<HeartBeatResponseMessage>(MessageHandler.HandleMessage);
-            MessageDispatcher.Register<SubmitBasketResponseMessage>(MessageHandler.HandleMessage);
 
             Console.WriteLine("Press Enter to Connect");
             Console.ReadLine();
 
+            //var MessageDispatcher = new JsonMessageDispatcher();
+            var MessageDispatcher = new XDocumentMessageDispatcher();
+
+            MessageDispatcher.Bind<MessageHandler>();
+
             var EndPoint = new IPEndPoint(IPAddress.Loopback,9000);
 
-            
 
-            Channel.OnMessage(MessageDispatcher.DispatchAsync);
+
+            MessageDispatcher.Bind(Channel);
 
             await Channel.ConnectAsync(EndPoint).ConfigureAwait(false);
 
