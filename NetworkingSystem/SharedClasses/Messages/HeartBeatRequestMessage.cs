@@ -5,10 +5,6 @@ namespace SharedClasses{
     [XmlRoot("Message")]
     public class HeartBeatRequestMessage : Message
     {
-        [XmlElement("POSData")]
-        [JsonProperty("posData")]
-        public POSData POSData { get; set; }
-
         public HeartBeatRequestMessage()
         {
             Type=MessageType.Request;

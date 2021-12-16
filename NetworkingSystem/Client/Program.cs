@@ -13,53 +13,47 @@ namespace Client
 {
     internal class Program
     {
-        static readonly XmlClientChannel Channel = new XmlClientChannel();
-        //static readonly JsonClientChannel Channel = new JsonClientChannel();
+        static int POSID = System.Diagnostics.Process.GetCurrentProcess().Id;
+
+        //static readonly XmlClientChannel Channel = new XmlClientChannel();
+        static readonly JsonClientChannel Channel = new JsonClientChannel();
         static async Task Main(string[] args)
         {
 
             Console.WriteLine("Press Enter to Connect");
             Console.ReadLine();
 
-            //var MessageDispatcher = new JsonMessageDispatcher();
-            var MessageDispatcher = new XDocumentMessageDispatcher();
+            var MessageDispatcher = new JsonMessageDispatcher();
+            //var MessageDispatcher = new XDocumentMessageDispatcher();
 
             MessageDispatcher.Bind<MessageHandler>();
 
-            var EndPoint = new IPEndPoint(IPAddress.Loopback,9000);
-
-
-
-            MessageDispatcher.Bind(Channel);
-
-            await Channel.ConnectAsync(EndPoint).ConfigureAwait(false);
-
-
-            _ = Task.Run(() => HBLoop(10));
-
-            var SubmitBasket = new SubmitBasketRequestMessage
+            try
             {
-                Id = "BASKET_0001",
-                POSData = new POSData { Id = "POS001" }
-            };
+                var EndPoint = new IPEndPoint(IPAddress.Loopback, 9000);
+                MessageDispatcher.Bind(Channel);
+                await Channel.ConnectAsync(EndPoint).ConfigureAwait(false);
 
-            await Channel.SendAsync(SubmitBasket).ConfigureAwait(false);
-
+                Console.WriteLine("Client Running");
+                _ = Task.Run(() => HBLoop(-1));
+            }
+            catch (Exception ex)
+            { Console.WriteLine($"Client Exception => {ex}"); }
             Console.ReadLine();
 
         }
-        static async Task HBLoop(int interval)
+        static async Task HBLoop(int count)
         {
-            int requestId = 1;
-            while (true)
+            bool LoopControl() => count == -1 ? true : count-- > 0;
+            while (LoopControl())
             {
                 var hbRequest = new HeartBeatRequestMessage
                 {
-                    Id =$"<3<3<3{requestId}<3<3<3",
-                    POSData = new POSData { Id = "POS001" }
+                    Id ="<3<3<3HB<3<3<3",
+                    POSData = new POSData { Id = $"POS{POSID}" }
                 };
                 await Channel.SendAsync(hbRequest).ConfigureAwait(false);
-                await Task.Delay(interval*1000);
+                await Task.Delay(10*1000);
             }
         }
     }

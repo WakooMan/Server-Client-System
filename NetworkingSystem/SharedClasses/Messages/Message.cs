@@ -30,6 +30,10 @@ namespace SharedClasses{
         [XmlAttribute("action")]
         [JsonProperty("action")]
         public string Action { get; set; }
+
+        [XmlElement("POSData")]
+        [JsonProperty("posData")]
+        public POSData POSData { get; set; }
     }
 
     public class POSData

@@ -39,7 +39,7 @@ namespace Server
             return Task.FromResult(response);
         }
 
-        private static void Received<T>(T m) where T : Message => Console.WriteLine($"Received {typeof(T).Name} => Action[ {m.Action} ], RequestId[ {m.Id} ] ");
-        private static void Sending<T>(T m) where T : Message => Console.WriteLine($"Sending {typeof(T).Name} => Action[ {m.Action} ], RequestId[ {m.Id} ] ");
+        private static void Received<T>(T m) where T : Message => Console.WriteLine($"Received {typeof(T).Name}: POS ID [ {m.POSData.Id} ], Action [ {m.Action} ], ID [ {m.Id} ] ");
+        private static void Sending<T>(T m) where T : Message => Console.WriteLine($"Sending {typeof(T).Name}: POS ID [ {m.POSData.Id} ], Action [ {m.Action} ], ID [ {m.Id} ] ");
     }
 }

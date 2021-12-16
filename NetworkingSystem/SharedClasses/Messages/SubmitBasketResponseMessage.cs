@@ -9,10 +9,6 @@ namespace SharedClasses{
         [JsonProperty("result")]
         public Result Result { get; set; }
 
-        [XmlElement("POSData")]
-        [JsonProperty("posData")]
-        public POSData POSData { get; set; }
-
         public SubmitBasketResponseMessage()
         {
             Type = MessageType.Response;

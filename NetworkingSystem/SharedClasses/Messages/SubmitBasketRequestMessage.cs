@@ -10,10 +10,6 @@ namespace SharedClasses{
     [XmlRoot("Message")]
     public class SubmitBasketRequestMessage : Message
     {
-        [XmlElement("POSData")]
-        [JsonProperty("posData")]
-        public POSData POSData { get; set; }
-
         public SubmitBasketRequestMessage()
         {
             Type = MessageType.Request;
