@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace SharedClasses
+namespace Networking
 {
     public interface INetworkChannel
     {

@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace SharedClasses{
+namespace Networking{
     public class XmlMessageProtocol : Protocol<XDocument>
     {
 

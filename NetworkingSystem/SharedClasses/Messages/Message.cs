@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SharedClasses{
+namespace Networking{
     public enum MessageType
     {
         Response,Request,Broadcast
@@ -16,6 +12,7 @@ namespace SharedClasses{
     {
         Success,Failure
     }
+    [Serializable]
     [XmlRoot("Message")]
     public abstract class Message
     {

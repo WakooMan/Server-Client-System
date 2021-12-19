@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedClasses{
+namespace Networking{
     [AttributeUsage(AttributeTargets.Method,AllowMultiple =false)]
     public class XPathRouteAttribute: RouteAttribute
     {

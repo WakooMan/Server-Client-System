@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SharedClasses{
+namespace Networking{
     public abstract class NetworkChannel<TProtocol, TMessageType> : IDisposable, INetworkChannel where TProtocol : Protocol<TMessageType>, new()
     {
         protected bool isDisposed = false;
         protected bool isClosed = false;
+        public bool IsClosed { get { return isClosed; } }
         private readonly TProtocol protocol = new TProtocol();
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private NetworkStream _networkStream;

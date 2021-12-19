@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace SharedClasses{
+namespace Networking{
     public abstract class MessageDispatcher<TMessageType> where TMessageType : class,new()
     {
         readonly List<(RouteAttribute route, Func<INetworkChannel,TMessageType, Task<TMessageType>> targetMethod)> _handlers = new List<(RouteAttribute route, Func<INetworkChannel,TMessageType, Task<TMessageType>> targetMethod)>();
@@ -71,6 +71,8 @@ namespace SharedClasses{
                 AddHandler(GetAttribute(mi),Wrapper);
             }
         }
+
+        public void UnBind() => _handlers.Clear();
 
         private bool HasRouteAttribute(MethodInfo mi) => GetAttribute(mi)!=null;
 

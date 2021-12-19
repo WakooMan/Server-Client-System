@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkingSystem", "NetworkingSystem\NetworkingSystem.csproj", "{F19CECF4-5052-4CB1-B674-DCE5FC580F56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedClasses", "SharedClasses\SharedClasses.csproj", "{ADBDFB9B-FD99-4776-ADB9-9FAEDFB64E81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network", "SharedClasses\Network.csproj", "{ADBDFB9B-FD99-4776-ADB9-9FAEDFB64E81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{43FD6C9C-5C5B-4B8F-AF98-80D3333AF838}"
 EndProject

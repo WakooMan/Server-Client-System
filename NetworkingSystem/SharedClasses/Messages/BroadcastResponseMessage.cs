@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Xml.Serialization;
 
-namespace SharedClasses{
+namespace Networking{
     [XmlRoot("Message")]
     public class BroadcastResponseMessage : Message
     {

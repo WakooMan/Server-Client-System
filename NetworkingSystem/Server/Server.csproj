@@ -46,18 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerStates.cs" />
+    <Compile Include="TestServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedClasses\SharedClasses.csproj">
+    <ProjectReference Include="..\SharedClasses\Network.csproj">
       <Project>{ADBDFB9B-FD99-4776-ADB9-9FAEDFB64E81}</Project>
-      <Name>SharedClasses</Name>
+      <Name>Network</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

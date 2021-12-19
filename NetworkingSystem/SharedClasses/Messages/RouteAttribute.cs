@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedClasses{
+namespace Networking{
     [AttributeUsage(AttributeTargets.Method)]
     public abstract class RouteAttribute: Attribute
     {

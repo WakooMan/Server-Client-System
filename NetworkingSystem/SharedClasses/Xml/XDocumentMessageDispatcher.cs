@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace SharedClasses{
+namespace Networking{
     public class XDocumentMessageDispatcher : MessageDispatcher<XDocument>
     {
         protected override TParam Deserialize<TParam>(XDocument messageType)

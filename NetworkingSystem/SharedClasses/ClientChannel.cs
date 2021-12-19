@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedClasses{
+namespace Networking{
     public class ClientChannel<TProtocol,TMessageType>: NetworkChannel<TProtocol,TMessageType>
         where TProtocol : Protocol<TMessageType>, new()
     {

@@ -1,17 +1,14 @@
-﻿using SharedClasses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 
-namespace Server
+namespace Networking
 {
-    public  class MessageHandler
+    public  class ServerMessageHandler<TStateEnum>
+        where TStateEnum : Enum
     {
+        public static SocketServer<TStateEnum> Server { get; set; }
 
         [XPathRoute("/Message[@type='Request' and @action='HeartBeat']")]
-        [JsonRoute("$.action","HeartBeat")]
         public static Task<HeartBeatResponseMessage> HandleMessage(INetworkChannel Channel,HeartBeatRequestMessage request)
         {
             Received(request);
@@ -26,12 +23,10 @@ namespace Server
         }
 
         [XPathRoute("/Message[@type='Request' and @action='Broadcast']")]
-        [JsonRoute("$.action", "Broadcast")]
         public static async Task<BroadcastResponseMessage> HandleMessage(INetworkChannel Channel,BroadcastRequestMessage request)
         {
             Received(request);
-            var broadcastmessage = new BroadcastMessage(request);
-            await Program.Server.Broadcast(Channel.Id,broadcastmessage).ConfigureAwait(false);
+            await Server.Broadcast(Channel.Id,request.BroadcastMessage).ConfigureAwait(false);
             var response = new BroadcastResponseMessage
             {
                 Id = request.Id,
