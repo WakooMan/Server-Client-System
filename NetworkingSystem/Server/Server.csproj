@@ -56,8 +56,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedClasses\Network.csproj">
-      <Project>{ADBDFB9B-FD99-4776-ADB9-9FAEDFB64E81}</Project>
+    <ProjectReference Include="..\Networking\Network.csproj">
+      <Project>{adbdfb9b-fd99-4776-adb9-9faedfb64e81}</Project>
       <Name>Network</Name>
     </ProjectReference>
   </ItemGroup>
