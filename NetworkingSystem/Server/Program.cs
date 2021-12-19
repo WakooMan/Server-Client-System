@@ -10,13 +10,15 @@ namespace Server
 {
     internal class Program
     {
+        public static XmlSocketServer Server;
+        //public static JsonSocketServer Server;
         static async Task Main(string[] args)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            //XmlSocketServer server = new XmlSocketServer();
-            JsonSocketServer server = new JsonSocketServer(2);
-            server.Bind<MessageHandler>();
-            var serverTask =server.StartAsync(9000,cancellationTokenSource.Token);
+            Server = new XmlSocketServer(4, () => { }, () => { });
+            //Server = new JsonSocketServer(4, () => { }, () => { });
+            Server.Bind<MessageHandler>();
+            var serverTask =Server.StartAsync(9000,cancellationTokenSource.Token);
             do
             {
                 Console.WriteLine("Echo Server is running. Press X to Exit");

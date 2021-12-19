@@ -9,6 +9,6 @@ namespace SharedClasses
 {
     public class XmlSocketServer : SocketServer<XmlChannel, XmlMessageProtocol, XDocument, XDocumentMessageDispatcher>
     {
-        public XmlSocketServer(int maxClients) : base(maxClients){ }
+        public XmlSocketServer(int maxClients,Action ClientConnected,Action ClientDisconnected) : base(maxClients,ClientConnected,ClientDisconnected){ }
     }
 }

@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace SharedClasses{
     public enum MessageType
     {
-        Response,Request
+        Response,Request,Broadcast
     }
 
     public enum Status

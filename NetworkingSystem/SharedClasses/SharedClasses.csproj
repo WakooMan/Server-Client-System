@@ -54,12 +54,13 @@
     <Compile Include="Json\JsonSerialization.cs" />
     <Compile Include="Json\JsonSocketServer.cs" />
     <Compile Include="MessageDispatcher.cs" />
+    <Compile Include="Messages\BroadcastMessage.cs" />
     <Compile Include="Messages\HeartBeatRequestMessage.cs" />
     <Compile Include="Messages\HeartBeatResponseMessage.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\RouteAttribute.cs" />
-    <Compile Include="Messages\SubmitBasketResponseMessage.cs" />
-    <Compile Include="Messages\SubmitBasketRequestMessage.cs" />
+    <Compile Include="Messages\BroadcastResponseMessage.cs" />
+    <Compile Include="Messages\BroadcastRequestMessage.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="NetworkChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

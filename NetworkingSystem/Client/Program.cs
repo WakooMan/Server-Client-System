@@ -15,16 +15,16 @@ namespace Client
     {
         static int POSID = System.Diagnostics.Process.GetCurrentProcess().Id;
 
-        //static readonly XmlClientChannel Channel = new XmlClientChannel();
-        static readonly JsonClientChannel Channel = new JsonClientChannel();
+        static readonly XmlClientChannel Channel = new XmlClientChannel();
+        //static readonly JsonClientChannel Channel = new JsonClientChannel();
         static async Task Main(string[] args)
         {
 
             Console.WriteLine("Press Enter to Connect");
             Console.ReadLine();
 
-            var MessageDispatcher = new JsonMessageDispatcher();
-            //var MessageDispatcher = new XDocumentMessageDispatcher();
+            //var MessageDispatcher = new JsonMessageDispatcher();
+            var MessageDispatcher = new XDocumentMessageDispatcher();
 
             MessageDispatcher.Bind<MessageHandler>();
 
@@ -52,7 +52,13 @@ namespace Client
                     Id ="<3<3<3HB<3<3<3",
                     POSData = new POSData { Id = $"POS{POSID}" }
                 };
+                var bcRequest = new BroadcastRequestMessage
+                {
+                    Id = "Broadcast Request",
+                    POSData = new POSData { Id = $"POS{POSID}" }
+                };
                 await Channel.SendAsync(hbRequest).ConfigureAwait(false);
+                await Channel.SendAsync(bcRequest).ConfigureAwait(false);
                 await Task.Delay(10*1000);
             }
         }

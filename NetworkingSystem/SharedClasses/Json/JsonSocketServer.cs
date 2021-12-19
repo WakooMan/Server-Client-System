@@ -9,6 +9,6 @@ namespace SharedClasses
 {
     public class JsonSocketServer: SocketServer<JsonChannel,JsonMessageProtocol,JObject,JsonMessageDispatcher>
     {
-        public JsonSocketServer(int maxClients):base(maxClients) { }
+        public JsonSocketServer(int maxClients,Action ClientConnected,Action ClientDisconnected):base(maxClients,ClientConnected,ClientDisconnected) { }
     }
 }

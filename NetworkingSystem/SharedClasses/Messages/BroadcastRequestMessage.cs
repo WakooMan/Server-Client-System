@@ -8,12 +8,12 @@ using System.Xml.Serialization;
 
 namespace SharedClasses{
     [XmlRoot("Message")]
-    public class SubmitBasketRequestMessage : Message
+    public class BroadcastRequestMessage : Message
     {
-        public SubmitBasketRequestMessage()
+        public BroadcastRequestMessage()
         {
             Type = MessageType.Request;
-            Action = "SubmitBasket";
+            Action = "Broadcast";
         }
     }
 }

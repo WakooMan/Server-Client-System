@@ -11,8 +11,8 @@ namespace SharedClasses
 {
     public class ChannelManager
     {
-        readonly ConcurrentDictionary<Guid, INetworkChannel> Channels = new ConcurrentDictionary<Guid, INetworkChannel>();
-        readonly Func<INetworkChannel> _channelFactory;
+        public readonly ConcurrentDictionary<Guid, INetworkChannel> Channels = new ConcurrentDictionary<Guid, INetworkChannel>();
+        private readonly Func<INetworkChannel> _channelFactory;
 
         const int GROOMING_INTERVAL_MINUTES = 1;
         private readonly  System.Timers.Timer _groomer = new System.Timers.Timer(GROOMING_INTERVAL_MINUTES*60*1000);
@@ -71,5 +71,13 @@ namespace SharedClasses
             channel.Attach(socket);
         }
 
+        public async Task Broadcast<T>(Guid ExceptionId, T Message)
+        {
+            foreach (Guid Id in Channels.Keys)
+            {
+                if (!Id.Equals(ExceptionId))
+                    await Channels[Id].SendAsync(Message).ConfigureAwait(false);
+            }
+        }
     }
 }

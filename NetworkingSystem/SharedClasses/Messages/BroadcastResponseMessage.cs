@@ -3,16 +3,16 @@ using System.Xml.Serialization;
 
 namespace SharedClasses{
     [XmlRoot("Message")]
-    public class SubmitBasketResponseMessage : Message
+    public class BroadcastResponseMessage : Message
     {
         [XmlElement("Result")]
         [JsonProperty("result")]
         public Result Result { get; set; }
 
-        public SubmitBasketResponseMessage()
+        public BroadcastResponseMessage()
         {
             Type = MessageType.Response;
-            Action = "SubmitBasket";
+            Action = "Broadcast";
         }
 
     }

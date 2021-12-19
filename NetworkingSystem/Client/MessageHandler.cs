@@ -18,11 +18,19 @@ namespace Client
             return Task.CompletedTask;
         }
 
-        [XPathRoute("/Message[@type='Response' and @action='SubmitBasket']")]
-        [JsonRoute("$.action", "SubmitBasket")]
-        public static Task HandleMessage(SubmitBasketResponseMessage response)
+        [XPathRoute("/Message[@type='Response' and @action='Broadcast']")]
+        [JsonRoute("$.action", "Broadcast")]
+        public static Task HandleMessage(BroadcastResponseMessage response)
         {
             Console.WriteLine($"Received {response.Action}: {response?.Result?.Status}, {response?.Id}");
+            return Task.CompletedTask;
+        }
+
+        [XPathRoute("/Message[@type='Broadcast' and @action='Broadcast']")]
+        [JsonRoute("$.action", "Broadcast")]
+        public static Task HandleMessage(BroadcastMessage response)
+        {
+            Console.WriteLine($"Received {response.Action} Message: {response?.Id}");
             return Task.CompletedTask;
         }
     }

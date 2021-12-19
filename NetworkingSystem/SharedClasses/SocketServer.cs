@@ -14,14 +14,17 @@ namespace SharedClasses
         where TMessageType: class,new()
 
     {
-        readonly ChannelManager _channelManager;
-        readonly TMessageDispatcher _messageDispatcher = new TMessageDispatcher();
+        private Action OnClientConnected,OnClientDisconnected;
+        protected readonly ChannelManager _channelManager;
+        protected readonly TMessageDispatcher _messageDispatcher = new TMessageDispatcher();
 
-        readonly SemaphoreSlim _connectionLimiter;
-        Func<Socket> _serverSocketFactory;
+        protected readonly SemaphoreSlim _connectionLimiter;
+        protected Func<Socket> _serverSocketFactory;
 
-        public SocketServer(int maxClients)
+        public SocketServer(int maxClients,Action _onClientConnected,Action _onClientDisconnected)
         {
+            OnClientConnected = _onClientConnected;
+            OnClientDisconnected = _onClientDisconnected;
             _connectionLimiter= new SemaphoreSlim(maxClients,maxClients);
             _channelManager = new ChannelManager
                 (
@@ -33,6 +36,7 @@ namespace SharedClasses
                         }
                 );
             _channelManager.ChannelClosed += (s, e) => _connectionLimiter.Release();
+            _channelManager.ChannelClosed+=(s,e) => OnClientDisconnected();
         }
 
         public void Bind<TController>() => _messageDispatcher.Bind<TController>();
@@ -88,7 +92,10 @@ namespace SharedClasses
                 Console.WriteLine($"ServerSocket::RunAsync => {e}");
             }
         }
-
+        public async Task Broadcast<T>(Guid ExceptionId,T Message)
+        {
+            await _channelManager.Broadcast(ExceptionId, Message).ConfigureAwait(false);
+        }
         private async Task AcceptConnection(Socket serverSocket)
         {
             var clientsocket = await Task.Factory.FromAsync(
@@ -99,6 +106,7 @@ namespace SharedClasses
 
             Console.WriteLine("SERVER :: CLIENT CONNECTION REQUEST");
             _channelManager.Accept(clientsocket);
+            OnClientConnected?.Invoke();
             Console.WriteLine($"SERVER :: CLIENT CONNECTED :: Remaining Connection slots:{_connectionLimiter.CurrentCount}");
         }
 
