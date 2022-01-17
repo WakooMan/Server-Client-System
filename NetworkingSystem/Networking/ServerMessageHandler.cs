@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client
+namespace Networking
 {
-    public enum LobbyMessageTypes
+    public abstract class ServerMessageHandler
     {
-        something, anotherthing
+        public static SocketServer Server { get; set; }
     }
 }

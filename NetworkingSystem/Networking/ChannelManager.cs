@@ -7,17 +7,18 @@ using System.Timers;
 
 namespace Networking
 {
+    using ServerChannelsInterface = IServerNetworkChannels<ObjectMessageUDPChannel, ObjectMessageTCPChannel, ObjectMessageProtocol, object>;
     public class ChannelManager
     {
-        public readonly ConcurrentDictionary<Guid, INetworkChannel> Channels = new ConcurrentDictionary<Guid, INetworkChannel>();
-        private readonly Func<INetworkChannel> _channelFactory;
+        public readonly ConcurrentDictionary<Guid, ServerChannelsInterface> Channels = new ConcurrentDictionary<Guid, ServerChannelsInterface>();
+        private readonly Func<ServerChannelsInterface> _channelFactory;
 
         const int GROOMING_INTERVAL_MINUTES = 1;
         private readonly  System.Timers.Timer _groomer = new System.Timers.Timer(GROOMING_INTERVAL_MINUTES*60*1000);
 
         public event EventHandler ChannelClosed;
 
-        public ChannelManager(Func<INetworkChannel> ChannelFactory)
+        public ChannelManager(Func<ServerChannelsInterface> ChannelFactory)
         {
             _channelFactory = ChannelFactory;
             _groomer.Elapsed += OnGroomerElapsedEventHandler;
@@ -69,12 +70,21 @@ namespace Networking
             channel.Attach(socket);
         }
 
-        public async Task Broadcast<T>(Guid ExceptionId, T Message)
+        public async Task BroadcastTCP<T>(Guid ExceptionId, T Message)
         {
             foreach (Guid Id in Channels.Keys)
             {
                 if (!Id.Equals(ExceptionId))
-                    await Channels[Id].SendAsync(Message).ConfigureAwait(false);
+                    await Channels[Id].SendTCP(Message).ConfigureAwait(false);
+            }
+        }
+
+        public async Task BroadcastUDP<T>(Guid ExceptionId, T Message)
+        {
+            foreach (Guid Id in Channels.Keys)
+            {
+                if (!Id.Equals(ExceptionId))
+                    await Channels[Id].SendUDP(Message).ConfigureAwait(false);
             }
         }
     }

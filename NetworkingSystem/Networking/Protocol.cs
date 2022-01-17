@@ -66,6 +66,53 @@ namespace Networking{
             return buffer;
         }
 
+        //Reads the length of the message and returns with it.
+        private int ReadHeader(byte [] buffer)
+        {
+            byte[] headerbytes = new byte[HEADER_SIZE];
+            Array.Copy(buffer,headerbytes,HEADER_SIZE);
+            return IPAddress.NetworkToHostOrder(BitConverter.ToInt32(headerbytes, 0));
+        }
+
+        //Reads the body from the buffer and returns with the decoded message.
+        private TMessageType ReadBody(byte[] buffer, int BodyLength)
+        {
+            byte[] BodyBytes= new byte[BodyLength];
+            Array.Copy(buffer,4,BodyBytes,0,BodyLength);
+            return Decode(BodyBytes);
+        }
+
+        //Reads a byte packet from the UDPClient Socket. We don't handle the header here.
+        private async Task<byte []> ReadAsync(UdpClient Socket) => (await Socket.ReceiveAsync().ConfigureAwait(false)).Buffer;
+
+        //Receives a message from the UDP Socket and decodes it to the message object.
+        public async Task<TMessageType> ReceiveAsync(UdpClient Socket)
+        {
+            byte[] buffer = await ReadAsync(Socket).ConfigureAwait(false);
+            int BodyLen = ReadHeader(buffer);
+            return ReadBody(buffer,BodyLen);
+        }
+
+        //Encodes the message to bytes and sends it to the UDP client Socket. 
+        public async Task SendAsync<T>(UdpClient Socket,IPEndPoint UDPEndPoint, T message)
+        {
+            var (header, body) = Encode<T>(message);
+            var Data = new byte[header.Length + body.Length];
+            Buffer.BlockCopy(src: header, 0, dst: Data, 0, header.Length);
+            Buffer.BlockCopy(src: body, 0, dst: Data, header.Length, body.Length);
+            await Socket.SendAsync(Data,Data.Length,UDPEndPoint);
+        }
+
+        //Encodes the message to bytes and sends it to the UDP server Socket. 
+        public async Task SendAsync<T>(UdpClient Socket, T message)
+        {
+            var (header, body) = Encode<T>(message);
+            var Data = new byte[header.Length + body.Length];
+            Buffer.BlockCopy(src: header, 0, dst: Data, 0, header.Length);
+            Buffer.BlockCopy(src: body, 0, dst: Data, header.Length, body.Length);
+            await Socket.SendAsync(Data, Data.Length);
+        }
+
         //We assert if the header is valid.
         protected virtual void AssertValidMessageLength(int messageLength)
         {

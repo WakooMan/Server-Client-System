@@ -47,11 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientStateC.cs" />
-    <Compile Include="ClientStates.cs" />
-    <Compile Include="LobbyMessageTypes.cs" />
+    <Compile Include="MessageHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClient.cs" />
+    <Compile Include="TestClientStateManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

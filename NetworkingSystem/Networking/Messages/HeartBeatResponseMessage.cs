@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Xml.Serialization;
 
 namespace Networking{
     [XmlRoot("Message")]
+    [Serializable]
     public class HeartBeatResponseMessage : Message
     {
         [XmlElement("Result")]
@@ -15,5 +17,9 @@ namespace Networking{
             Action = "HeartBeat";
         }
 
+        public override string ToString()
+        {
+            return "HeartBeatResponseMessage";
+        }
     }
 }

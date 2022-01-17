@@ -1,35 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Networking{
-    public abstract class NetworkChannel<TProtocol, TMessageType> : IDisposable, INetworkChannel where TProtocol : Protocol<TMessageType>, new()
+namespace Networking
+{
+    public class UDPNetworkChannel<TProtocol, TMessageType> : IDisposable, INetworkChannel where TProtocol : Protocol<TMessageType>, new ()
     {
+        private UdpClient Sender { get; set; }
+        private UdpClient Receiver { get; set; }
+
         protected bool isDisposed = false;
         protected bool isClosed = false;
         public bool IsClosed { get { return isClosed; } }
-        private readonly TProtocol protocol = new TProtocol();
+        protected readonly TProtocol protocol = new TProtocol();
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private NetworkStream _networkStream;
         private Task _receiveLoopTask;
         private Func<TMessageType, Task> messageCallback;
+        public Guid Id { get; private set; }
 
-        public event EventHandler Closed;
+        public UDPNetworkChannel(Guid id,Action receivedMessage) { Id = id; ReceivedMessage = receivedMessage; }
 
-        public Guid Id { get; } = Guid.NewGuid();
+        private Action ReceivedMessage { get; set; }
 
-        public DateTime LastSent { get; protected set; }
-
-        public DateTime LastReceived { get; protected set; }
-
-        public void Attach(Socket socket)
+        public void Attach(string ipAddress, int sendPort, int receivePort)
         {
-            _networkStream = new NetworkStream(socket, true);
-
+            Sender = new UdpClient();
+            Sender.Connect(new IPEndPoint(IPAddress.Parse(ipAddress), sendPort));
+            Receiver = new UdpClient(receivePort);
             _receiveLoopTask = Task.Run(ReceiveLoop, cancellationTokenSource.Token);
         }
         public void Close()
@@ -38,8 +37,8 @@ namespace Networking{
             {
                 isClosed = true;
                 cancellationTokenSource.Cancel();
-                _networkStream?.Close();
-                Closed?.Invoke(this, EventArgs.Empty);
+                Sender.Close();
+                Receiver.Close();
             }
         }
 
@@ -51,20 +50,19 @@ namespace Networking{
             {
                 while (!cancellationTokenSource.Token.IsCancellationRequested)
                 {
-                    //TODO: Pass Cancellation Token to Protocol Methods
-                    var msg = await protocol.ReceiveAsync(_networkStream).ConfigureAwait(false);
-                    LastReceived = DateTime.UtcNow;
+                    var msg = await protocol.ReceiveAsync(Receiver).ConfigureAwait(false);
+                    ReceivedMessage?.Invoke();
                     await messageCallback(msg).ConfigureAwait(false);
                 }
             }
             catch (System.ObjectDisposedException e)
             {
-                Console.WriteLine($"Channel {Id} disconnected.");
+                Console.WriteLine($"UDP Channel {Id} disconnected.");
                 Close();
             }
             catch (System.IO.IOException)
             {
-                Console.WriteLine($"Channel {Id} disconnected.");
+                Console.WriteLine($"UDP Channel {Id} disconnected.");
                 Close();
             }
             catch (Exception e)
@@ -75,12 +73,11 @@ namespace Networking{
         }
 
         public async Task SendAsync<T>(T Message)
-        { 
-            await protocol.SendAsync(_networkStream, Message).ConfigureAwait(false);
-            LastSent = DateTime.UtcNow;
+        {
+            await protocol.SendAsync(Sender, Message);
         }
 
-        ~NetworkChannel() => Dispose(false);
+        ~UDPNetworkChannel() => Dispose(false);
         public void Dispose() => Dispose(true);
 
         public void Dispose(bool isDisposing)
@@ -88,7 +85,7 @@ namespace Networking{
             if (!isDisposed)
             {
                 isDisposed = true;
-
+                Close();
 
                 //TODO: Clean up stuff
 

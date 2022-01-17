@@ -8,27 +8,15 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    public class TestClient : SocketClient<ClientStates>
+    public class TestClient : SocketClient
     {
-        public TestClient(IPAddress IPAddr, int _port) : base(IPAddr, _port) { ClientState = new ClientStateC(0); }
+        public TestClient(IPAddress IPAddr, int _port) : base(IPAddr, _port) { ClientStateManager = new TestClientStateManager(new ClientStateC(this),this); Bind<MessageHandler>(); }
 
-        public async override void ClientLoop()
+        public async override Task ClientLoop()
         {
             while (true)
             {
-                var hbRequest = new HeartBeatRequestMessage
-                {
-                    Id = "<3<3<3HB<3<3<3",
-                    POSData = new POSData { Id = $"POS{POSID}" }
-                };
-
-                var bcRequest = new BroadcastRequestMessage(new BroadcastMessage() { Id="Broadcast Message", POSData = new POSData { Id = $"POS{POSID}" } });
-                bcRequest.Id = "Broadcast Request";
-                bcRequest.POSData = new POSData { Id = $"POS{POSID}" };
-                
-                await Channel.SendAsync(hbRequest).ConfigureAwait(false);
-                await Channel.SendAsync(bcRequest).ConfigureAwait(false);
-                await Task.Delay(10 * 1000);
+                await ClientStateManager.CurrState.ExecuteStuff();
             }
         }
     }

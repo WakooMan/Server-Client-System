@@ -7,41 +7,46 @@ using System.Threading.Tasks;
 
 namespace Networking
 {
-    public abstract class SocketServer<TStateEnum>
-        where TStateEnum : Enum
+    public abstract class SocketServer
     {
         //State variable is initiated in child class
-        public NetworkState<TStateEnum> ServerState { get; }
-        private Action OnClientConnected,OnClientDisconnected;
-        protected readonly ChannelManager _channelManager;
-        protected readonly XDocumentMessageDispatcher _messageDispatcher = new XDocumentMessageDispatcher();
-
+        public NetworkStateManager ServerStateManager { get; protected set; }
+        protected Action OnClientConnected, OnClientDisconnected;
+        public readonly ChannelManager _channelManager;
+        protected readonly ObjectMessageDispatcher _messageDispatcher = new ObjectMessageDispatcher();
+        public bool Running = false;
         protected readonly SemaphoreSlim _connectionLimiter;
         protected Func<Socket> _serverSocketFactory;
 
-        public SocketServer(int maxClients,Action _onClientConnected,Action _onClientDisconnected)
+        public SocketServer(int maxClients)
         {
-            ServerMessageHandler<TStateEnum>.Server = this;
-            OnClientConnected = _onClientConnected;
-            OnClientDisconnected = _onClientDisconnected;
+            ServerMessageHandler.Server = this;
             _connectionLimiter= new SemaphoreSlim(maxClients,maxClients);
             _channelManager = new ChannelManager
                 (
                     ()=> 
                         {
                             var Channel = CreateChannel();
-                            _messageDispatcher.Bind(Channel);
+                            _messageDispatcher.Bind(Channel.TCPChannel);
+                            _messageDispatcher.Bind(Channel.UDPChannel);
                             return Channel;
                         }
                 );
             _channelManager.ChannelClosed += (s, e) => _connectionLimiter.Release();
-            _channelManager.ChannelClosed+=(s,e) => OnClientDisconnected();
+        }
+
+        public void SetOnClientConnected(Action OnClientConnected) => this.OnClientConnected = OnClientConnected;
+        public void SetOnClientDisconnected(Action OnClientDisconnected) 
+        { 
+            this.OnClientDisconnected = OnClientDisconnected;
+            _channelManager.ChannelClosed += (s, e) => OnClientDisconnected();
         }
 
         public void Bind<TController>() => _messageDispatcher.Bind<TController>();
 
         public Task StartAsync(int port,CancellationToken cancellationToken)
         {
+            Running = true;
             _serverSocketFactory = () =>
             {
                 var EndPoint = new IPEndPoint(IPAddress.Loopback, port);
@@ -91,9 +96,14 @@ namespace Networking
                 Console.WriteLine($"ServerSocket::RunAsync => {e}");
             }
         }
-        public async Task Broadcast<T>(Guid ExceptionId,T Message)
+        public async Task BroadcastTCP<T>(Guid ExceptionId,T Message)
         {
-            await _channelManager.Broadcast(ExceptionId, Message).ConfigureAwait(false);
+            await _channelManager.BroadcastTCP(ExceptionId, Message).ConfigureAwait(false);
+        }
+
+        public async Task BroadcastUDP<T>(Guid ExceptionId, T Message)
+        {
+            await _channelManager.BroadcastUDP(ExceptionId, Message);
         }
         private async Task AcceptConnection(Socket serverSocket)
         {
@@ -109,8 +119,8 @@ namespace Networking
             Console.WriteLine($"SERVER :: CLIENT CONNECTED :: Remaining Connection slots:{_connectionLimiter.CurrentCount}");
         }
 
-        protected virtual XmlChannel CreateChannel() => new XmlChannel();
+        protected virtual ObjectMessageServerChannels CreateChannel() => new ObjectMessageServerChannels();
         //This is the server side loop, which has the logic about when to send message to a client.
-        public abstract void ServerLoop(Task serverTask,CancellationTokenSource cancellationTokenSource);
+        public abstract Task ServerLoop(Task serverTask,CancellationTokenSource cancellationTokenSource);
     }
 }

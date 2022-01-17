@@ -7,16 +7,25 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    internal class ClientStateC : NetworkState<ClientStates>
+    internal class ClientStateC : NetworkState
     {
-        public ClientStateC() :base(){ }
-        public ClientStateC(ClientStates initState) : base(initState) { }
+        public ClientStateC(SocketClient client) :base(client){ }
 
-        public override void PopState()
-            //If the Current State is the first state we can't go back to the previous State.
-            => CurrState = CurrState>0? CurrState - 1:0;
+        public async override Task ExecuteStuff()
+        {
+            await Client.SendUDP(new HeartBeatRequestMessage()
+            {
+                Id = "UDPMessage",
+                POSData = new POSData { Id = $"POS{Client.POSID}" }
+            });
+            await Client.SendTCP(new HeartBeatRequestMessage()
+            {
+                Id = "TCPMessage",
+                POSData = new POSData { Id = $"POS{Client.POSID}" }
+            });
+            await Task.Delay(5000);
+        }
 
-        public override void PushNextState()
-            => CurrState++;
+        public override string ToString() => "ClientStateC";
     }
 }

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Xml.Serialization;
 
 namespace Networking{
@@ -17,33 +16,29 @@ namespace Networking{
     public abstract class Message
     {
         [XmlAttribute("id")]
-        [JsonProperty("id")]
         public string Id { get; set; }
 
         [XmlAttribute("type")]
-        [JsonProperty("type")]
         public MessageType Type { get; set; }
 
         [XmlAttribute("action")]
-        [JsonProperty("action")]
         public string Action { get; set; }
 
         [XmlElement("POSData")]
-        [JsonProperty("posData")]
         public POSData POSData { get; set; }
-    }
 
+        public abstract override string ToString();
+    }
+    [Serializable]
     public class POSData
     {
         [XmlAttribute("id")]
-        [JsonProperty("id")]
         public string Id { get; set; }
     }
-
+    [Serializable]
     public class Result
     {
         [XmlAttribute("status")]
-        [JsonProperty("status")]
         public Status Status { get; set; }
     }
 }

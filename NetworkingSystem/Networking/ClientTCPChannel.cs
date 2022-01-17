@@ -7,9 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Networking{
-    public class ClientChannel<TProtocol,TMessageType>: NetworkChannel<TProtocol,TMessageType>
+    public class ClientTCPChannel<TProtocol,TMessageType>: TCPNetworkChannel<TProtocol,TMessageType>
         where TProtocol : Protocol<TMessageType>, new()
     {
+        public ClientTCPChannel(Guid id,Action ReceivedMessage) : base(id, ReceivedMessage)
+        {
+        }
+
         public async Task ConnectAsync(IPEndPoint EndPoint)
         { 
             var socket = new Socket(EndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);

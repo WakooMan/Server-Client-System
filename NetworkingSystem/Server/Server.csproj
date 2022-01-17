@@ -46,10 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerStates.cs" />
     <Compile Include="TestServer.cs" />
+    <Compile Include="TestServerState.cs" />
+    <Compile Include="TestServerStateManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -76,7 +76,7 @@ namespace Networking{
 
         private bool HasRouteAttribute(MethodInfo mi) => GetAttribute(mi)!=null;
 
-        public void Bind<TProtocol>(NetworkChannel<TProtocol,TMessageType> Channel)
+        public void Bind<TProtocol>(TCPNetworkChannel<TProtocol,TMessageType> Channel)
             where TProtocol : Protocol<TMessageType>,new()
         => Channel.OnMessage(async message =>
             {
@@ -93,6 +93,24 @@ namespace Networking{
                     }
                 }
             });
+
+        public void Bind<TProtocol>(UDPNetworkChannel<TProtocol, TMessageType> Channel)
+            where TProtocol : Protocol<TMessageType>, new()
+        => Channel.OnMessage(async message =>
+        {
+            var response = await DispatchAsync(Channel, message).ConfigureAwait(false);
+            if (response != null)
+            {
+                try
+                {
+                    await Channel.SendAsync(response).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        });
         public virtual void Register<TParam, TResult>(Func< TParam, Task<TResult>> target)
             => Register(new Func<INetworkChannel, TParam, Task<TResult>>((c, m) => target(m)));
         public virtual void Register<TParam, TResult>(Func<INetworkChannel,TParam, Task<TResult>> target)

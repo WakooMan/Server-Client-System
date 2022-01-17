@@ -1,28 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Networking
 {
-    //Abstract class to Manage the network states, in implementation it is recommended to have one Client and Server Networkstate if they have different logic.
-    public abstract class NetworkState<TStateEnum> where TStateEnum : Enum
+    public abstract class NetworkState
     {
-        //Current State of the server
-        public TStateEnum CurrState { get; protected set; }
-        //this will increment the CurrState variable or it changes the CurrState variable by any logic.
-        public abstract void PushNextState();
-        //Goes back to the previous state.
-        public abstract void PopState();
+        public SocketClient Client { get; private set; }
+        public SocketServer Server { get; private set; }
 
-        //default constructor
-        public NetworkState()
+        protected NetworkState(SocketServer server)
         {
-            CurrState = default(TStateEnum);
-        }
-        //constructor
-        public NetworkState(TStateEnum state)
-        {
-            CurrState = state;
+            Server = server;
+            Client = null;
         }
 
+        protected NetworkState(SocketClient client)
+        {
+            Client = client;
+            Server = null;
+        }
 
+        public bool IsThisState(string StateName)
+        {
+            return StateName == ToString();
+        }
+#pragma warning disable CS0114 // Member hides inherited member; missing override keyword
+        public abstract string ToString();
+#pragma warning restore CS0114 // Member hides inherited member; missing override keyword
+        public abstract Task ExecuteStuff();
     }
 }

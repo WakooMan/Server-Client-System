@@ -14,9 +14,8 @@ namespace Server
         {
             var cancellationTokenSource = new CancellationTokenSource();
             TestServer Server = new TestServer(4, () => { }, () => { });
-            Server.Bind<ServerMessageHandler<ServerStates>>();
             var serverTask =Server.StartAsync(9000,cancellationTokenSource.Token);
-            Server.ServerLoop(serverTask,cancellationTokenSource);
+            await Server.ServerLoop(serverTask,cancellationTokenSource);
             
         }
     }
