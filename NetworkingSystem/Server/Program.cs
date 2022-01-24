@@ -10,13 +10,17 @@ namespace Server
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             var cancellationTokenSource = new CancellationTokenSource();
             TestServer Server = new TestServer(4, () => { }, () => { });
-            var serverTask =Server.StartAsync(9000,cancellationTokenSource.Token);
-            await Server.ServerLoop(serverTask,cancellationTokenSource);
-            
+            Server.Start(9000);
+            Server.StartServerLoopOnNewThread();
+            while (Server.Running)
+            {
+                Server.Update();
+                Thread.Sleep(100);
+            }
         }
     }
 }

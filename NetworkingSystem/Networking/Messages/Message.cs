@@ -16,29 +16,28 @@ namespace Networking{
     public abstract class Message
     {
         [XmlAttribute("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [XmlAttribute("type")]
         public MessageType Type { get; set; }
 
-        [XmlAttribute("action")]
-        public string Action { get; set; }
+        [XmlAttribute("emethod")]
+        public EDeliveryMethod EMethod { get; set; }
 
-        [XmlElement("POSData")]
-        public POSData POSData { get; set; }
-
+        public Message(int id, MessageType type, EDeliveryMethod eMethod) 
+        {
+            Id = id;
+            Type = type;
+            EMethod = eMethod;
+        }
         public abstract override string ToString();
-    }
-    [Serializable]
-    public class POSData
-    {
-        [XmlAttribute("id")]
-        public string Id { get; set; }
     }
     [Serializable]
     public class Result
     {
         [XmlAttribute("status")]
         public Status Status { get; set; }
+
+        public Result(Status status) { Status = status; }
     }
 }

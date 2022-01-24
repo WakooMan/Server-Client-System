@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    internal class TestServerStateManager : NetworkStateManager
+    internal class TestServerStateManager : ServerNetworkStateManager
     {
-        public TestServerStateManager(SocketServer Server) : base(Server)
+        public TestServerStateManager(Networking.Server Server): base(Server,null)
         {
         }
-        public TestServerStateManager(NetworkState state, SocketServer Server) : base(state, Server)
+        public TestServerStateManager(Networking.Server Server, NetworkState state) : base(Server, state)
         {
         }
 

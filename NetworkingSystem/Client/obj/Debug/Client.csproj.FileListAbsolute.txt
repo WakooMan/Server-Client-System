@@ -11,3 +11,6 @@ C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Cl
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\obj\Debug\Client.pdb
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Newtonsoft.Json.dll
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Newtonsoft.Json.xml
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\LiteNetLib.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\LiteNetLib.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\LiteNetLib.xml

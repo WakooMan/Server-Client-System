@@ -5,17 +5,15 @@ using System.Xml.Serialization;
 namespace Networking{
     [XmlRoot("Message")]
     [Serializable]
-    public class HeartBeatRequestMessage : Message
+    public class KeepAliveRequestMessage : Message
     {
-        public HeartBeatRequestMessage()
+        public KeepAliveRequestMessage(int id): base(id,MessageType.Request,EDeliveryMethod.Reliable)
         {
-            Type=MessageType.Request;
-            Action = "HeartBeat";
         }
 
         public override string ToString()
         {
-            return "HeartBeatRequestMessage";
+            return "KeepAliveRequestMessage";
         }
     }
 }

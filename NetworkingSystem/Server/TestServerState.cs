@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public class TestServerState : NetworkState
+    public class TestServerState : ServerNetworkState
     {
-        public TestServerState(SocketServer server) : base(server)
+        public TestServerState(Networking.Server server) : base(server)
         {
         }
 
-        public override Task ExecuteStuff()
+        public override void ExecuteStuff()
         {
-            return Task.CompletedTask;
+           
         }
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "TestServerState";
         }
     }
 }

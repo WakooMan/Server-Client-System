@@ -5,21 +5,21 @@ using System.Xml.Serialization;
 namespace Networking{
     [XmlRoot("Message")]
     [Serializable]
-    public class HeartBeatResponseMessage : Message
+    public class KeepAliveResponseMessage : Message
     {
         [XmlElement("Result")]
         [JsonProperty("result")]
         public Result Result { get; set; }
 
-        public HeartBeatResponseMessage()
+        public KeepAliveResponseMessage(int id,Result result) : base(id,MessageType.Response,EDeliveryMethod.Reliable)
         {
             Type=MessageType.Response;
-            Action = "HeartBeat";
+            Result = result;
         }
 
         public override string ToString()
         {
-            return "HeartBeatResponseMessage";
+            return "KeepAliveResponseMessage";
         }
     }
 }

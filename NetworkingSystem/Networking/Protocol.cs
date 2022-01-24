@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteNetLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,13 +12,32 @@ namespace Networking{
     {
         //This is the size of an int in bytes.
         const int HEADER_SIZE = 4;
-        
+
+        public TMessageType Receive(byte[] bytes)
+        {
+            int BodyLen =ReadHeader(bytes);
+            return ReadBody(bytes, BodyLen);
+        }
+
         //Receives a message from the stream and decodes it to the message object.
         public async Task<TMessageType> ReceiveAsync(NetworkStream stream)
         {
             int BodyLength = await ReadHeader(stream).ConfigureAwait(false);
             AssertValidMessageLength(BodyLength);
             return await ReadBody(stream,BodyLength).ConfigureAwait(false);
+        }
+
+        public void Send<T>(NetPeer peer,EDeliveryMethod eMethod, T message)
+        {
+            var (header, body) = Encode<T>(message);
+            var Data = new byte[header.Length + body.Length];
+            Buffer.BlockCopy(src: header, 0, dst: Data, 0, header.Length);
+            Buffer.BlockCopy(src: body, 0, dst: Data, header.Length, body.Length);
+            peer.Send(
+               Data,
+               eMethod == EDeliveryMethod.Reliable ?
+                   DeliveryMethod.ReliableOrdered :
+                   DeliveryMethod.Unreliable);
         }
 
         //Encodes the message to bytes and writes it to the stream. 

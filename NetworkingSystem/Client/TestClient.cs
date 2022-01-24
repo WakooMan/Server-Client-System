@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    public class TestClient : SocketClient
+    public class TestClient : Networking.Client
     {
-        public TestClient(IPAddress IPAddr, int _port) : base(IPAddr, _port) { ClientStateManager = new TestClientStateManager(new ClientStateC(this),this); Bind<MessageHandler>(); }
+        public TestClient(string IPAddr, int _port) : base(IPAddr, _port) { ClientStateManager = new TestClientStateManager(this, new ClientStateC(this)); Bind<MessageHandler>(); }
 
-        public async override Task ClientLoop()
+        protected override void ClientLoop()
         {
-            while (true)
+            while (IsConnected)
             {
-                await ClientStateManager.CurrState.ExecuteStuff();
+                ClientStateManager.CurrState.ExecuteStuff();
             }
         }
     }

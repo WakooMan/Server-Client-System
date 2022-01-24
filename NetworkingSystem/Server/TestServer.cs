@@ -8,20 +8,18 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public class TestServer : SocketServer
+    public class TestServer : Networking.Server
     {
-        public TestServer(int maxClients, Action _onClientConnected, Action _onClientDisconnected) : base(maxClients) { ServerStateManager = new TestServerStateManager(new TestServerState(this), this); Bind<MessageHandler>(); }
-        public async override Task ServerLoop(Task serverTask,CancellationTokenSource cancellationTokenSource)
+        public TestServer(int maxClients, Action _onClientConnected, Action _onClientDisconnected) : base(maxClients) { ServerStateManager = new TestServerStateManager(this, new TestServerState(this)); Bind<MessageHandler>(); }
+        protected override void ServerLoop()
         {
             do
             {
-                await ServerStateManager.CurrState.ExecuteStuff();
+                ServerStateManager.CurrState.ExecuteStuff();
                 Console.WriteLine("Echo Server is running. Press X to Exit");
                 var Key = Console.ReadKey();
                 if (Key.Key == ConsoleKey.X)
                 {
-                    cancellationTokenSource.Cancel();
-                    await serverTask;
                     Console.WriteLine("Server Shutdown");
                     break;
                 }

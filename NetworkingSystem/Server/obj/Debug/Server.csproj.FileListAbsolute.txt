@@ -11,3 +11,6 @@ C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Server\bin\Debug\Ne
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Server\bin\Debug\SharedClasses.pdb
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Server\bin\Debug\Newtonsoft.Json.xml
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Server\bin\Debug\LiteNetLib.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Server\bin\Debug\LiteNetLib.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Server\bin\Debug\LiteNetLib.xml

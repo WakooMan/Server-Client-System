@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    public class TestClientStateManager : NetworkStateManager
+    public class TestClientStateManager : ClientNetworkStateManager
     {
-        public TestClientStateManager(SocketClient Client) : base(Client)
+        public TestClientStateManager(Networking.Client Client) : base(Client,null)
         {
         }
 
-        public TestClientStateManager(NetworkState state, SocketClient Client) : base(state, Client)
+        public TestClientStateManager(Networking.Client Client, NetworkState state) : base(Client,state)
         {
         }
 
