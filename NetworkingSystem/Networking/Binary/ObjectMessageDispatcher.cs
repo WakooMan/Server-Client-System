@@ -9,6 +9,10 @@ namespace Networking
 {
     public class ObjectMessageDispatcher: MessageDispatcher<object>
     {
+        protected override void AddType(Type type)
+        {
+        }
+
         protected override object Deserialize(Type type, object message)
             => ObjectMessageSerialization.Deserialize(type, message);
 

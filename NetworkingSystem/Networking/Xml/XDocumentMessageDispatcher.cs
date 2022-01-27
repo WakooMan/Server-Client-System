@@ -18,5 +18,9 @@ namespace Networking{
 
         protected override object Deserialize(Type type, XDocument message)
             => XmlSerialization.Deserialize(type,message);
+
+        protected override void AddType(Type type)
+        {
+        }
     }
 }

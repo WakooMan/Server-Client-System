@@ -1,0 +1,7 @@
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\MultiplayerCustomBattle\bin\Win64_Shipping_Client\Networking.dll
+C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\MultiplayerCustomBattle\bin\Win64_Shipping_Client\Networking.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CopyComplete
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.pdb

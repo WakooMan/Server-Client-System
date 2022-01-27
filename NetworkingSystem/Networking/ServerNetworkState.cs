@@ -8,8 +8,8 @@ namespace Networking
 {
     public abstract class ServerNetworkState: NetworkState
     {
-        protected Server server { get; private set; }
-        protected ServerNetworkState(Server server)
+        protected IServer server { get; private set; }
+        protected ServerNetworkState(IServer server)
         {
             this.server = server;
         }

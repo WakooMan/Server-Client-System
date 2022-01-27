@@ -4,13 +4,16 @@ using System.Threading;
 
 namespace Networking
 {
-    public abstract class Client: IUpdatable
+    public abstract class Client<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType>: IClient
+        where TNetworkChannel : NetworkChannel<TProtocol, TMessageType>, new()
+        where TProtocol : Protocol<TMessageType>, new()
+        where TMessageDispatcher : MessageDispatcher<TMessageType>, new()
+        where TMessageType : class, new()
     {
         protected INetworkChannel Channel;
         private readonly NetManager LanManager;
-        protected readonly ObjectMessageDispatcher MessageDispatcher;
+        protected readonly TMessageDispatcher MessageDispatcher;
         private DateTime LastSentKeepAliveMsg { get; set; } = DateTime.UtcNow;
-        private int KeepAlivePacketID = 0;
         public ClientNetworkStateManager ClientStateManager { get; protected set; }
         protected string IP;
         protected int Port;
@@ -20,8 +23,8 @@ namespace Networking
             IP = IPAddr;
             Port = _port;
 
-            LanManager = new NetManager(new LiteNetListenerClient(this, SetNetworkChannelEventMethod));
-            MessageDispatcher = new ObjectMessageDispatcher();
+            LanManager = new NetManager(new LiteNetListenerClient<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType>(this, SetNetworkChannelEventMethod));
+            MessageDispatcher = new TMessageDispatcher();
 
             LanManager.Start();
             LanManager.Connect(IP,Port,"SomethingKey");
@@ -54,7 +57,7 @@ namespace Networking
         {
             if (DateTime.Compare(DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 5)), LastSentKeepAliveMsg) > 0)
             {
-                Send(new KeepAliveRequestMessage(KeepAlivePacketID++));
+                Send(new KeepAliveRequestMessage());
                 LastSentKeepAliveMsg = DateTime.UtcNow;
             }
            LanManager?.PollEvents();

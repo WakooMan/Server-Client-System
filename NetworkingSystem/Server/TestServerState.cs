@@ -9,7 +9,7 @@ namespace Server
 {
     public class TestServerState : ServerNetworkState
     {
-        public TestServerState(Networking.Server server) : base(server)
+        public TestServerState(IServer server) : base(server)
         {
         }
 

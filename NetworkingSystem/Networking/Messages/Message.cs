@@ -16,7 +16,7 @@ namespace Networking{
     public abstract class Message
     {
         [XmlAttribute("id")]
-        public int Id { get; set; }
+        public int MessageId { get; protected set; }
 
         [XmlAttribute("type")]
         public MessageType Type { get; set; }
@@ -26,7 +26,7 @@ namespace Networking{
 
         public Message(int id, MessageType type, EDeliveryMethod eMethod) 
         {
-            Id = id;
+            MessageId = id;
             Type = type;
             EMethod = eMethod;
         }

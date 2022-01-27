@@ -11,7 +11,7 @@ namespace Networking
 
     public class ObjectNetworkChannel : NetworkChannel<ObjectMessageProtocol, object>
     {
-        public ObjectNetworkChannel(NetPeer peer) : base(peer)
+        public ObjectNetworkChannel() : base()
         {
         }
     }

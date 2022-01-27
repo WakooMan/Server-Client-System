@@ -4,7 +4,7 @@ namespace Client
 {
     internal class ClientStateC : ClientNetworkState
     {
-        public ClientStateC(Networking.Client client) :base(client){ }
+        public ClientStateC(IClient client) :base(client){ }
         public override void ExecuteStuff()
         {
             

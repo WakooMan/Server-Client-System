@@ -9,10 +9,10 @@ namespace Server
 {
     internal class TestServerStateManager : ServerNetworkStateManager
     {
-        public TestServerStateManager(Networking.Server Server): base(Server,null)
+        public TestServerStateManager(IServer Server): base(Server,null)
         {
         }
-        public TestServerStateManager(Networking.Server Server, NetworkState state) : base(Server, state)
+        public TestServerStateManager(IServer Server, NetworkState state) : base(Server, state)
         {
         }
 

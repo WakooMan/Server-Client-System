@@ -9,11 +9,11 @@ namespace Client
 {
     public class TestClientStateManager : ClientNetworkStateManager
     {
-        public TestClientStateManager(Networking.Client Client) : base(Client,null)
+        public TestClientStateManager(IClient Client) : base(Client,null)
         {
         }
 
-        public TestClientStateManager(Networking.Client Client, NetworkState state) : base(Client,state)
+        public TestClientStateManager(IClient Client, NetworkState state) : base(Client,state)
         {
         }
 

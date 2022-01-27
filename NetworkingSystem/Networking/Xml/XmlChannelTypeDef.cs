@@ -10,7 +10,7 @@ using System.Xml.Linq;
 namespace Networking{
     public class XmlChannel : NetworkChannel<XmlMessageProtocol, XDocument>
     {
-        public XmlChannel(NetPeer peer) : base(peer)
+        public XmlChannel() : base()
         {
         }
     }

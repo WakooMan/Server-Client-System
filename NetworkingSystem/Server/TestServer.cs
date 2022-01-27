@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public class TestServer : Networking.Server
+    public class TestServer : ManualSerializationServer
     {
         public TestServer(int maxClients, Action _onClientConnected, Action _onClientDisconnected) : base(maxClients) { ServerStateManager = new TestServerStateManager(this, new TestServerState(this)); Bind<MessageHandler>(); }
         protected override void ServerLoop()

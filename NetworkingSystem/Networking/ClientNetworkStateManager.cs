@@ -8,9 +8,9 @@ namespace Networking
 {
     public abstract class ClientNetworkStateManager: NetworkStateManager
     {
-        protected Client client { get; private set; }
+        protected IClient client { get; private set; }
 
-        public ClientNetworkStateManager(Client client, NetworkState State) : base(State)
+        public ClientNetworkStateManager(IClient client, NetworkState State) : base(State)
         {
             this.client = client;
         }

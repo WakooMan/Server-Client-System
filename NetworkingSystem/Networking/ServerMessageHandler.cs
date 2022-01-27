@@ -8,18 +8,18 @@ namespace Networking
 {
     public abstract class ServerMessageHandler
     {
-        public static Server Server { get; set; }
+        public static IServer Server { get; set; }
 
-        [ObjectMessageRoute("KeepAliveRequestMessage")]
+        [ManualSerializationRoute("KeepAliveRequestMessage")]
         public static KeepAliveResponseMessage HandleMessage(INetworkChannel Channel, KeepAliveRequestMessage request)
         {
             Received(request);
-            var response = new KeepAliveResponseMessage(request.Id, new Result(Status.Success));
+            var response = new KeepAliveResponseMessage(new Result(Status.Success));
             Sending(response);
             return response;
         }
 
-        private static void Received<T>(T m) where T : Message => Console.WriteLine($"Received {typeof(T).Name}: ID [ {m.Id} ] ");
-        private static void Sending<T>(T m) where T : Message => Console.WriteLine($"Sending {typeof(T).Name}: ID [ {m.Id} ] ");
+        private static void Received<T>(T m) where T : Message => Console.WriteLine($"Received {typeof(T).Name}: ID [ {m.MessageId} ] ");
+        private static void Sending<T>(T m) where T : Message => Console.WriteLine($"Sending {typeof(T).Name}: ID [ {m.MessageId} ] ");
     }
 }

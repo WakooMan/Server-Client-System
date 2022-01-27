@@ -5,12 +5,12 @@ namespace Networking
 {
     public abstract class ClientMessageHandler
     {
-        public static Client Client { get; set; }
+        public static IClient Client { get; set; }
 
-        [ObjectMessageRoute("KeepAliveResponseMessage")]
+        [ManualSerializationRoute("KeepAliveResponseMessage")]
         public static void HandleMessage(KeepAliveResponseMessage response)
         {
-            Console.WriteLine($"Received KeepAliveResponseMessage: {response?.Result?.Status}, PacketID:{response?.Id}");
+            Console.WriteLine($"Received KeepAliveResponseMessage: {response?.Result?.Status}, PacketID:{response?.MessageId}");
         }
     }
 }

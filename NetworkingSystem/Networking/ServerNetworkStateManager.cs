@@ -8,9 +8,9 @@ namespace Networking
 {
     public abstract class ServerNetworkStateManager: NetworkStateManager
     {
-        protected Server server { get; private set; }
+        protected IServer server { get; private set; }
 
-        public ServerNetworkStateManager(Server server, NetworkState State) : base(State)
+        public ServerNetworkStateManager(IServer server, NetworkState State) : base(State)
         {
             this.server = server;
         }

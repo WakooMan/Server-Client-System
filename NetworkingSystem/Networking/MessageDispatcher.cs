@@ -24,7 +24,7 @@ namespace Networking{
         public void Bind<TController>()
         {
             bool returnTypeIsMessageType(MethodInfo mi)
-                => mi.ReturnType.IsSubclassOf(typeof(Message));
+                => mi.ReturnType.IsSubclassOf(typeof(Message)) || mi.ReturnType.IsSubclassOf(typeof(ManuallySerializedMessage));
             bool returnTypeIsVoid(MethodInfo mi)
                 => mi.ReturnType == typeof(void);
 
@@ -58,11 +58,15 @@ namespace Networking{
                                 return null;
                         }
                 });
+                var ParamType = mi.GetParameters().Length == 1
+                    ? mi.GetParameters()[0].ParameterType
+                    : mi.GetParameters()[1].ParameterType;
+                AddType(ParamType);
                 AddHandler(GetAttribute(mi),Wrapper);
             }
         }
 
-        public void UnBind() => _handlers.Clear();
+        public virtual void UnBind() => _handlers.Clear();
 
         private bool HasRouteAttribute(MethodInfo mi) => GetAttribute(mi)!=null;
 
@@ -124,5 +128,7 @@ namespace Networking{
         protected abstract bool IsMatch(RouteAttribute route, TMessageType message);
 
         protected abstract RouteAttribute GetAttribute(MethodInfo mi);
+
+        protected abstract void AddType(Type type);
     }
 }

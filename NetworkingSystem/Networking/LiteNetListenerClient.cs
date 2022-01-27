@@ -9,11 +9,15 @@ using LiteNetLib;
 
 namespace Networking
 {
-    public class LiteNetListenerClient : INetEventListener
+    public class LiteNetListenerClient<TNetworkChannel, TProtocol, TMessageDispatcher, TMessageType> : INetEventListener
+        where TNetworkChannel : NetworkChannel<TProtocol, TMessageType>, new()
+        where TProtocol : Protocol<TMessageType>, new()
+        where TMessageDispatcher : MessageDispatcher<TMessageType>, new()
+        where TMessageType : class, new()
     {
-        private readonly Client Client;
+        private readonly IClient Client;
         Action<INetworkChannel> SetNetworkChannelMethod;
-        public LiteNetListenerClient(Client client,Action<INetworkChannel> method) 
+        public LiteNetListenerClient(IClient client,Action<INetworkChannel> method) 
         { 
             Client = client;
             SetNetworkChannelMethod = method;
@@ -46,7 +50,8 @@ namespace Networking
 
         public void OnPeerConnected(NetPeer peer)
         {
-            INetworkChannel connection = new ObjectNetworkChannel(peer);
+            TNetworkChannel connection = new TNetworkChannel();
+            connection.SetPeer(peer);
             peer.Tag = connection;
             SetNetworkChannelMethod(connection);
         }

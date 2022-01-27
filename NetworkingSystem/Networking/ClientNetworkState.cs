@@ -8,8 +8,8 @@ namespace Networking
 {
     public abstract class ClientNetworkState: NetworkState
     {
-        protected Client client { get; private set; }
-        protected ClientNetworkState(Client client)
+        protected IClient client { get; private set; }
+        protected ClientNetworkState(IClient client)
         {
             this.client = client;
         }

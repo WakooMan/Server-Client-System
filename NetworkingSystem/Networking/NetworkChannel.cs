@@ -10,13 +10,14 @@ namespace Networking
 {
     public class NetworkChannel<TProtocol, TMessageType> : IDisposable, INetworkChannel where TProtocol : Protocol<TMessageType>, new ()
     {
-        private readonly NetPeer m_Peer;
+        private NetPeer m_Peer;
         protected bool isDisposed = false;
         public bool IsClosed { get; protected set; } = false;
         protected readonly TProtocol protocol = new TProtocol();
         private Action<TMessageType> messageCallback;
         public event EventHandler Closed;
-        public NetworkChannel(NetPeer peer) { m_Peer = peer; Latency = m_Peer.Ping; }
+        public NetworkChannel() { }
+        public void SetPeer(NetPeer peer) => m_Peer = peer;
         public Guid Id { get; } = Guid.NewGuid();
 
         public int FragmentLength => 100_000;

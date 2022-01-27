@@ -5,12 +5,16 @@ using System.Net.Sockets;
 
 namespace Networking
 {
-    public class LiteNetListenerServer : INetEventListener
+    public class LiteNetListenerServer<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType> : INetEventListener
+        where TNetworkChannel : NetworkChannel<TProtocol,TMessageType>,new()
+        where TMessageType : class,new()
+        where TProtocol: Protocol<TMessageType>,new()
+        where TMessageDispatcher : MessageDispatcher<TMessageType>,new()
     {
-        private readonly Server Server;
+        private readonly IServer Server;
         private readonly Action OnClientConnectedInvokeFunction;
         private readonly Action OnClientDisconnectedInvokeFunction;
-        public LiteNetListenerServer(Server server, Action _OnClientConnectedInvokeFunction, Action _OnClientDisconnectedInvokeFunction)
+        public LiteNetListenerServer(IServer server, Action _OnClientConnectedInvokeFunction, Action _OnClientDisconnectedInvokeFunction)
         {
             Server = server;
             OnClientConnectedInvokeFunction = _OnClientConnectedInvokeFunction;
@@ -54,7 +58,8 @@ namespace Networking
 
         public void OnPeerConnected(NetPeer peer)
         {
-            ObjectNetworkChannel con = new ObjectNetworkChannel(peer);
+            TNetworkChannel con = new TNetworkChannel();
+            con.SetPeer(peer);
             peer.Tag = con;
             Server.Connected(con);
         }
