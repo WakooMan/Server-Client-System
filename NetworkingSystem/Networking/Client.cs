@@ -27,7 +27,20 @@ namespace Networking
             MessageDispatcher = new TMessageDispatcher();
 
             LanManager.Start();
-            LanManager.Connect(IP,Port,"SomethingKey");
+        }
+
+        public void TryConnectOnNewThread(int AttemptsNum, int SecondsBetweenAttempts) 
+            => new Thread(()=> TryConnect(AttemptsNum, SecondsBetweenAttempts)).Start();
+        //giving -1 as AttemptsNum results in an infinite loop.
+        public void TryConnect(int AttemptsNum,int SecondsBetweenAttempts) 
+        {
+            int Count = 0;
+            while (Count!=AttemptsNum&&!IsConnected)
+            {
+                LanManager.Connect(IP,Port,"valami");
+                Count++;
+                Thread.Sleep(SecondsBetweenAttempts * 1000);
+            }
         }
 
         private void SetNetworkChannelEventMethod(INetworkChannel channel) 
