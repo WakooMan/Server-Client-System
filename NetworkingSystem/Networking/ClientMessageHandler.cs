@@ -7,7 +7,7 @@ namespace Networking
     {
         public static IClient Client { get; set; }
 
-        [ManualSerializationRoute("KeepAliveResponseMessage")]
+        [ObjectMessageRoute("KeepAliveResponseMessage")]
         public static void HandleMessage(KeepAliveResponseMessage response)
         {
             Console.WriteLine($"Received KeepAliveResponseMessage: {response?.Result?.Status}, PacketID:{response?.MessageId}");

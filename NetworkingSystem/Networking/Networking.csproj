@@ -53,10 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binary\ObjectMessageChannelTypeDef.cs" />
+    <Compile Include="Binary\ObjectMessageClient.cs" />
     <Compile Include="Binary\ObjectMessageDispatcher.cs" />
     <Compile Include="Binary\ObjectMessageProtocol.cs" />
     <Compile Include="Binary\ObjectMessageRouteAttribute.cs" />
     <Compile Include="Binary\ObjectMessageSerialization.cs" />
+    <Compile Include="Binary\ObjectMessageServer.cs" />
     <Compile Include="ChannelManager.cs" />
     <Compile Include="ClientNetworkState.cs" />
     <Compile Include="ClientNetworkStateManager.cs" />
@@ -69,17 +71,12 @@
     <Compile Include="IUpdatable.cs" />
     <Compile Include="LiteNetListenerClient.cs" />
     <Compile Include="LiteNetListenerServer.cs" />
-    <Compile Include="ManualSerialization\ManuallySerializedMessage.cs" />
-    <Compile Include="ManualSerialization\ManuallySerializedMessageChannelTypeDef.cs" />
-    <Compile Include="ManualSerialization\ManualMessageSerialization.cs" />
-    <Compile Include="ManualSerialization\ManualSerializationClient.cs" />
-    <Compile Include="ManualSerialization\ManualSerializationDispatcher.cs" />
-    <Compile Include="ManualSerialization\ManualSerializationProtocol.cs" />
-    <Compile Include="ManualSerialization\ManualSerializationRouteAttribute.cs" />
-    <Compile Include="ManualSerialization\ManualSerializationServer.cs" />
+    <Compile Include="Messages\ReliableMessage.cs" />
+    <Compile Include="Messages\UnreliableMessage.cs" />
     <Compile Include="MessageDispatcher.cs" />
     <Compile Include="Messages\KeepAliveRequestMessage.cs" />
     <Compile Include="Messages\KeepAliveResponseMessage.cs" />
+    <Compile Include="Messages\RandomMessage.cs" />
     <Compile Include="NetworkChannel.cs" />
     <Compile Include="ServerMessageHandler.cs" />
     <Compile Include="Messages\Message.cs" />
@@ -92,11 +89,6 @@
     <Compile Include="NetworkStateManager.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Server.cs" />
-    <Compile Include="Xml\XDocumentMessageDispatcher.cs" />
-    <Compile Include="Xml\XmlChannelTypeDef.cs" />
-    <Compile Include="Xml\XmlMessageProtocol.cs" />
-    <Compile Include="Xml\XmlSerialization.cs" />
-    <Compile Include="Xml\XPathRouteAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

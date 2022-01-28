@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Networking
 {
-    public abstract class ManuallySerializedMessage : Message
+    public abstract class UnreliableMessage: Message
     {
         protected MemoryStream stream;
         protected BinaryWriter writer; 
-        protected ManuallySerializedMessage(int id, MessageType type, EDeliveryMethod eMethod) : base(id, type, eMethod)
+        protected UnreliableMessage(int id, MessageType type) : base(id, type, EDeliveryMethod.Unreliable)
         {
         }
 
-        public ManuallySerializedMessage() :base(0,0,0)
+        public UnreliableMessage() :base(0,0,EDeliveryMethod.Unreliable)
         {
 
         }

@@ -50,7 +50,7 @@ namespace Networking
             messageCallback(msg);
         }
 
-        public void Send<T>(T Message,EDeliveryMethod eMethod)
+        public void Send<T>(T Message,EDeliveryMethod eMethod) where T : Message 
         {
             protocol.Send(m_Peer,eMethod,Message);
         }

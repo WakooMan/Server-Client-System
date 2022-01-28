@@ -10,7 +10,7 @@ namespace Networking
     {
         public static IServer Server { get; set; }
 
-        [ManualSerializationRoute("KeepAliveRequestMessage")]
+        [ObjectMessageRoute("KeepAliveRequestMessage")]
         public static KeepAliveResponseMessage HandleMessage(INetworkChannel Channel, KeepAliveRequestMessage request)
         {
             Received(request);

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Networking
 {
     public class ObjectMessageDispatcher: MessageDispatcher<object>
     {
+        public static Dictionary<int, Type> RegisteredMessageTypes = new Dictionary<int, Type>();
+
         protected override void AddType(Type type)
         {
+            RegisteredMessageTypes.Add(((UnreliableMessage)Activator.CreateInstance(type)).MessageId, type);
         }
-
         protected override object Deserialize(Type type, object message)
             => ObjectMessageSerialization.Deserialize(type, message);
 

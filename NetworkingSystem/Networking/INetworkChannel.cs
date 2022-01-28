@@ -18,7 +18,7 @@ namespace Networking
         void Close();
         void Dispose();
 
-        void Send<T>(T Message,EDeliveryMethod eMethod);
+        void Send<T>(T Message,EDeliveryMethod eMethod) where T: Message;
 
         void Receive(byte [] bytes);
         

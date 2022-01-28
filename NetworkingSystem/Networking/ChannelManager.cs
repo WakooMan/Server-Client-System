@@ -24,7 +24,7 @@ namespace Networking
             };
         }
 
-        public void Broadcast<T>(Guid ExceptionId, T Message,EDeliveryMethod eMethod)
+        public void Broadcast<T>(Guid ExceptionId, T Message,EDeliveryMethod eMethod) where T : Message
         {
             foreach (Guid Id in Channels.Keys)
             {
@@ -33,7 +33,7 @@ namespace Networking
             }
         }
 
-        public void SendTo<T>(Guid id, T message, EDeliveryMethod eMethod)
+        public void SendTo<T>(Guid id, T message, EDeliveryMethod eMethod) where T : Message
         {
             foreach (Guid Id in Channels.Keys)
             {

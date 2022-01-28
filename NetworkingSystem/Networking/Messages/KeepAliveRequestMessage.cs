@@ -5,14 +5,9 @@ using System.Xml.Serialization;
 namespace Networking{
     [XmlRoot("Message")]
     [Serializable]
-    public class KeepAliveRequestMessage : ManuallySerializedMessage
+    public class KeepAliveRequestMessage : ReliableMessage
     {
-        public KeepAliveRequestMessage() : base(0,MessageType.Request, EDeliveryMethod.Reliable) { }
-
-        public override void Deserialize(byte[] bytes)
-        {
-            base.Deserialize(bytes);
-        }
+        public KeepAliveRequestMessage() : base(0,MessageType.Request) { }
 
         public override string ToString()
         {

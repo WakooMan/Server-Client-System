@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    public class TestClient : ManualSerializationClient
+    public class TestClient : ObjectMessageClient
     {
         public TestClient(string IPAddr, int _port) : base(IPAddr, _port) { ClientStateManager = new TestClientStateManager(this, new ClientStateC(this)); Bind<MessageHandler>(); }
 

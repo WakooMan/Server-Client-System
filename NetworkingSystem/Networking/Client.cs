@@ -18,6 +18,8 @@ namespace Networking
         protected string IP;
         protected int Port;
         public bool IsConnected { get => !Channel?.IsClosed??false; }
+        public bool TryingToConnect { get; private set; } = false;
+
         public Client(string IPAddr, int _port)
         {
             IP = IPAddr;
@@ -35,12 +37,14 @@ namespace Networking
         public void TryConnect(int AttemptsNum,int SecondsBetweenAttempts) 
         {
             int Count = 0;
+            TryingToConnect = true;
             while (Count!=AttemptsNum&&!IsConnected)
             {
                 LanManager.Connect(IP,Port,"valami");
                 Count++;
                 Thread.Sleep(SecondsBetweenAttempts * 1000);
             }
+            TryingToConnect = false;
         }
 
         private void SetNetworkChannelEventMethod(INetworkChannel channel) 
@@ -68,10 +72,18 @@ namespace Networking
         //Virtual, because there we should send the Data that is needed to send real time (for example: player movement in battle) in derived class.
         public virtual void Update()
         {
-            if (DateTime.Compare(DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 5)), LastSentKeepAliveMsg) > 0)
+            if (!IsConnected)
             {
-                Send(new KeepAliveRequestMessage());
-                LastSentKeepAliveMsg = DateTime.UtcNow;
+                if (!TryingToConnect)
+                    TryConnectOnNewThread(-1, 1);
+            }
+            if (IsConnected)
+            {
+                if (DateTime.Compare(DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 5)), LastSentKeepAliveMsg) > 0)
+                {
+                    Send(new KeepAliveRequestMessage());
+                    LastSentKeepAliveMsg = DateTime.UtcNow;
+                }
             }
            LanManager?.PollEvents();
         }
