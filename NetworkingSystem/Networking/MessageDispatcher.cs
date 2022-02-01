@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Networking{
     public abstract class MessageDispatcher<TMessageType> where TMessageType : class, new()
@@ -13,12 +12,7 @@ namespace Networking{
             foreach (var (route, target) in _handlers)
             {
                 if (IsMatch(route, message))
-                {
-                    if (message as ReliableMessage!=null)
-                        return target(channel, message) as ReliableMessage;
-                    else
-                        return target(channel, message) as UnreliableMessage;
-                }
+                   return target(channel, message) as Message;
             }
             //No Handler what to do?
             return null;
@@ -27,7 +21,7 @@ namespace Networking{
         public void Bind<TController>()
         {
             bool returnTypeIsMessageType(MethodInfo mi)
-                => mi.ReturnType.IsSubclassOf(typeof(ReliableMessage)) || mi.ReturnType.IsSubclassOf(typeof(UnreliableMessage));
+                => mi.ReturnType.IsSubclassOf(typeof(Message));
             bool returnTypeIsVoid(MethodInfo mi)
                 => mi.ReturnType == typeof(void);
 
@@ -61,16 +55,11 @@ namespace Networking{
                               return null;
                       }
                   });
-                var ParamType = mi.GetParameters().Length == 1
-                    ? mi.GetParameters()[0].ParameterType
-                    : mi.GetParameters()[1].ParameterType;
-                if(ParamType.IsSubclassOf(typeof(UnreliableMessage)))
-                    AddType(ParamType);
                 AddHandler(GetAttribute(mi), Wrapper);
             }
         }
 
-        public virtual void UnBind() => _handlers.Clear();
+        public void UnBind() => _handlers.Clear();
 
         private bool HasRouteAttribute(MethodInfo mi) => GetAttribute(mi) != null;
 
@@ -79,45 +68,10 @@ namespace Networking{
             {
                 var response = Dispatch(Channel, message);
                 if (response != null)
-                    Channel.Send(response, response.EMethod); 
+                    Channel.Send(response, response.EMethod);
                 
 
             });
-
-        public virtual void Register<TParam, TResult>(Func<TParam, Task<TResult>> target)
-            => Register(new Func<INetworkChannel, TParam, Task<TResult>>((c, m) => target(m)));
-        public virtual void Register<TParam, TResult>(Func<INetworkChannel, TParam, Task<TResult>> target)
-        {
-            if (!HasAttribute(target.Method))
-                throw new Exception("Missing Required Route Attribute");
-
-            var wrapper = new Func<INetworkChannel, TMessageType, TMessageType>((channel, message) =>
-             {
-                 var Param = Deserialize<TParam>(message);
-                 var result = target(channel, Param);
-
-                 if (result != null)
-                     return Serialize(result);
-                 else
-                     return null;
-             });
-            AddHandler(GetAttribute(target.Method), wrapper);
-        }
-        public virtual void Register<TParam>(Func<TParam, Task> target)
-            => Register(new Func<INetworkChannel, TParam, Task>((c, m) => target(m)));
-        public virtual void Register<TParam>(Func<INetworkChannel, TParam, Task> target)
-        {
-            if (!HasAttribute(target.Method))
-                throw new Exception("Missing Required Route Attribute");
-
-            var wrapper = new Func<INetworkChannel, TMessageType, TMessageType>((channel, message) =>
-             {
-                 var Param = Deserialize<TParam>(message);
-                 target(channel, Param);
-                 return null;
-             });
-            AddHandler(GetAttribute(target.Method), wrapper);
-        }
 
         protected void AddHandler(RouteAttribute route, Func<INetworkChannel, TMessageType, TMessageType> targetMethod)
             => _handlers.Add((route, targetMethod));
@@ -133,7 +87,5 @@ namespace Networking{
         protected abstract bool IsMatch(RouteAttribute route, TMessageType message);
 
         protected abstract RouteAttribute GetAttribute(MethodInfo mi);
-
-        protected virtual void AddType(Type type) { }
     }
 }

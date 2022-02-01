@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using LiteNetLib;
+using Networking.Protobuf;
 
 namespace Networking
 {
-    public class LiteNetListenerClient<TNetworkChannel, TProtocol, TMessageDispatcher, TMessageType> : INetEventListener
-        where TNetworkChannel : NetworkChannel<TProtocol, TMessageType>, new()
-        where TProtocol : Protocol<TMessageType>, new()
-        where TMessageDispatcher : MessageDispatcher<TMessageType>, new()
-        where TMessageType : class, new()
+    public class LiteNetListenerClient<TBaseMessageType> : INetEventListener
     {
-        private readonly IClient Client;
-        Action<INetworkChannel> SetNetworkChannelMethod;
-        public LiteNetListenerClient(IClient client,Action<INetworkChannel> method) 
-        { 
+        IClient Client;
+        Action<INetworkChannel> OnConnectedInvokeMethod;
+        Action OnDisconnectedInvokeMethod;
+        public LiteNetListenerClient(IClient client,Action<INetworkChannel> OnConInvokemethod, Action OnDisconInvokeMethod)
+        {
             Client = client;
-            SetNetworkChannelMethod = method;
+            OnConnectedInvokeMethod = OnConInvokemethod;
+            OnDisconnectedInvokeMethod = OnDisconInvokeMethod;
         }
         public void OnConnectionRequest(ConnectionRequest request)
         {
@@ -38,7 +33,6 @@ namespace Networking
         {
             if (reader.IsNull)
             {
-                Console.WriteLine("The message is null.");
             }
 
             peer.GetConnection()?.Receive(reader.GetRemainingBytes());
@@ -50,14 +44,15 @@ namespace Networking
 
         public void OnPeerConnected(NetPeer peer)
         {
-            TNetworkChannel connection = new TNetworkChannel();
+            ProtobufChannel<TBaseMessageType> connection = new ProtobufChannel<TBaseMessageType>();
             connection.SetPeer(peer);
             peer.Tag = connection;
-            SetNetworkChannelMethod(connection);
+            OnConnectedInvokeMethod(connection);
         }
 
         public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo)
         {
+            OnDisconnectedInvokeMethod();
             peer.Tag = null;
         }
     }

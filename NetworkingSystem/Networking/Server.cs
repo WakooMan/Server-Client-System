@@ -1,15 +1,12 @@
 ﻿
 using LiteNetLib;
+using Networking.Protobuf;
 using System;
 using System.Threading;
 
 namespace Networking
 {
-    public abstract class Server<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType> : IServer
-        where TNetworkChannel : NetworkChannel<TProtocol,TMessageType>,new()
-        where TProtocol : Protocol<TMessageType>,new()
-        where TMessageDispatcher : MessageDispatcher<TMessageType>,new()
-        where TMessageType : class,new()
+    public abstract class Server<TBaseMessageType>: IServer
     {
         //State variable is initiated in child class
         public ServerNetworkStateManager ServerStateManager { get; protected set; }
@@ -17,7 +14,7 @@ namespace Networking
         protected readonly NetManager LanManager;
         private event EventHandler OnClientConnected, OnClientDisconnected;
         public readonly ChannelManager _channelManager;
-        protected readonly TMessageDispatcher _messageDispatcher = new TMessageDispatcher();
+        protected readonly ProtobufMsgDispatcher _messageDispatcher = new ProtobufMsgDispatcher();
         public bool Running = false;
         private int MaxClients;
         private int CurrentClients;
@@ -25,7 +22,7 @@ namespace Networking
         public Server(int maxClients)
         {
             //WanManager = new NetManager(new LiteNetListenerServer(this,() => OnClientConnected?.Invoke(this,null), () => OnClientDisconnected?.Invoke(this,null)));
-            LanManager = new NetManager(new LiteNetListenerServer<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType>(this,() => OnClientConnected?.Invoke(this, null), () => OnClientDisconnected?.Invoke(this, null)));
+            LanManager = new NetManager(new LiteNetListenerServer<TBaseMessageType>(this,() => OnClientConnected?.Invoke(this, null), () => OnClientDisconnected?.Invoke(this, null)));
             ServerMessageHandler.Server = this;
             MaxClients = maxClients;
             CurrentClients = 0;

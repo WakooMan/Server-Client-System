@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Networking.Protobuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Networking
     {
         public static IServer Server { get; set; }
 
-        [ObjectMessageRoute("KeepAliveRequestMessage")]
+        [ProtobufMsgRoute("KeepAliveRequestMessage")]
         public static KeepAliveResponseMessage HandleMessage(INetworkChannel Channel, KeepAliveRequestMessage request)
         {
             Received(request);

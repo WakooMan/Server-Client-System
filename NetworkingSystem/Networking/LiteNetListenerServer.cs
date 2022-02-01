@@ -1,15 +1,12 @@
 ﻿using LiteNetLib;
+using Networking.Protobuf;
 using System;
 using System.Net;
 using System.Net.Sockets;
 
 namespace Networking
 {
-    public class LiteNetListenerServer<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType> : INetEventListener
-        where TNetworkChannel : NetworkChannel<TProtocol,TMessageType>,new()
-        where TMessageType : class,new()
-        where TProtocol: Protocol<TMessageType>,new()
-        where TMessageDispatcher : MessageDispatcher<TMessageType>,new()
+    public class LiteNetListenerServer<TBaseMessageType> : INetEventListener
     {
         private readonly IServer Server;
         private readonly Action OnClientConnectedInvokeFunction;
@@ -25,12 +22,10 @@ namespace Networking
             if (!Server.CanPlayerJoin())
             {
                 request.Reject();
-                Console.WriteLine("Someone Tried to Connect, but connection got rejected.");
             }
             else
             {
                 request.Accept();
-                Console.WriteLine("Someone Tried to Connect. Connection Accepted");
                 OnClientConnectedInvokeFunction();
             }
         }
@@ -58,7 +53,7 @@ namespace Networking
 
         public void OnPeerConnected(NetPeer peer)
         {
-            TNetworkChannel con = new TNetworkChannel();
+            ProtobufChannel<TBaseMessageType> con = new ProtobufChannel<TBaseMessageType>();
             con.SetPeer(peer);
             peer.Tag = con;
             Server.Connected(con);

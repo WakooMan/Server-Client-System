@@ -1,22 +1,20 @@
 ﻿using LiteNetLib;
+using Networking.Protobuf;
 using System;
 using System.Threading;
 
 namespace Networking
 {
-    public abstract class Client<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType>: IClient
-        where TNetworkChannel : NetworkChannel<TProtocol, TMessageType>, new()
-        where TProtocol : Protocol<TMessageType>, new()
-        where TMessageDispatcher : MessageDispatcher<TMessageType>, new()
-        where TMessageType : class, new()
+    public abstract class Client<TBaseMessageType> : IClient
     {
         protected INetworkChannel Channel;
         private readonly NetManager LanManager;
-        protected readonly TMessageDispatcher MessageDispatcher;
-        private DateTime LastSentKeepAliveMsg { get; set; } = DateTime.UtcNow;
+        protected readonly ProtobufMsgDispatcher MessageDispatcher;
+        protected DateTime LastSentKeepAliveMsg { get; set; } = DateTime.UtcNow;
         public ClientNetworkStateManager ClientStateManager { get; protected set; }
         protected string IP;
         protected int Port;
+        private event EventHandler OnConnected, OnDisconnected;
         public bool IsConnected { get => !Channel?.IsClosed??false; }
         public bool TryingToConnect { get; private set; } = false;
 
@@ -24,11 +22,27 @@ namespace Networking
         {
             IP = IPAddr;
             Port = _port;
-
-            LanManager = new NetManager(new LiteNetListenerClient<TNetworkChannel,TProtocol,TMessageDispatcher,TMessageType>(this, SetNetworkChannelEventMethod));
-            MessageDispatcher = new TMessageDispatcher();
-
+            OnConnected += (s, e) => OnConnectedEvent((INetworkChannel)s);
+            OnDisconnected += (s, e) => OnDisconnectedEvent();
+            LanManager = new NetManager(new LiteNetListenerClient<TBaseMessageType>(this, (Channel) => OnConnected?.Invoke(Channel, null), () => OnDisconnected?.Invoke(this, null)));
+            MessageDispatcher = new ProtobufMsgDispatcher();
+            ClientMessageHandler.Client = this;
             LanManager.Start();
+        }
+
+        public void AddOnConnectedEvent(Action OnConnected) => this.OnConnected += (s, e) => OnConnected();
+        public void AddOnDisconnectedEvent(Action OnDisconnected) => this.OnDisconnected += (s, e) => OnDisconnected();
+
+        private void OnConnectedEvent(INetworkChannel channel)
+        {
+            Channel = channel;
+            MessageDispatcher.Bind(Channel);
+        }
+
+        private void OnDisconnectedEvent()
+        {
+            Channel?.Close();
+            Channel = null;
         }
 
         public void TryConnectOnNewThread(int AttemptsNum, int SecondsBetweenAttempts) 
@@ -45,12 +59,6 @@ namespace Networking
                 Thread.Sleep(SecondsBetweenAttempts * 1000);
             }
             TryingToConnect = false;
-        }
-
-        private void SetNetworkChannelEventMethod(INetworkChannel channel) 
-        { 
-            Channel = channel; 
-            MessageDispatcher.Bind(Channel);
         }
 
         public void Bind<TController>() => MessageDispatcher.Bind<TController>();
@@ -76,14 +84,6 @@ namespace Networking
             {
                 if (!TryingToConnect)
                     TryConnectOnNewThread(-1, 1);
-            }
-            if (IsConnected)
-            {
-                if (DateTime.Compare(DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 5)), LastSentKeepAliveMsg) > 0)
-                {
-                    Send(new KeepAliveRequestMessage());
-                    LastSentKeepAliveMsg = DateTime.UtcNow;
-                }
             }
            LanManager?.PollEvents();
         }

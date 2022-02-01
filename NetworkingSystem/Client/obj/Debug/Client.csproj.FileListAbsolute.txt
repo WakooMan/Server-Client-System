@@ -14,3 +14,17 @@ C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Li
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\LiteNetLib.xml
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Networking.dll
 C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\Networking.pdb
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\protobuf-net.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\protobuf-net.Core.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Memory.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Collections.Immutable.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Buffers.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Numerics.Vectors.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\protobuf-net.xml
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\protobuf-net.Core.xml
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Memory.xml
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Collections.Immutable.xml
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Buffers.xml
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Numerics.Vectors.xml
+C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Client\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
