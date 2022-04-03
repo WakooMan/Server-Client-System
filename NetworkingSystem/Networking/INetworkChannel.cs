@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading.Tasks;
 
 namespace Networking
 {
@@ -14,11 +11,11 @@ namespace Networking
         int Latency { get; set; }
         bool IsClosed { get; }
 
-        void OnMessage<TMessageType>(Action<TMessageType> p);
+        void OnMessage<TMessageType>(Action<INetworkChannel,TMessageType> p);
         void Close();
         void Dispose();
 
-        void Send<T>(T Message,EDeliveryMethod eMethod) where T: Message;
+        void Send<T>(T Message,EDeliveryMethod eMethod) where T: class;
 
         void Receive(byte [] bytes);
         

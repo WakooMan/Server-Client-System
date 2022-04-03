@@ -1,19 +1,21 @@
 ﻿using LiteNetLib;
+using ProtoBuf;
 using System;
+using System.IO;
 
 namespace Networking{
-    public abstract class Protocol<TMessageType>
+    public class Protocol<TBaseMessageType>
     {
         //This is the size of an int in bytes.
         const int HEADER_SIZE = 4;
 
-        public TMessageType Receive(byte[] bytes)
+        public TBaseMessageType Receive(byte[] bytes)
         {
             int BodyLen = ReadHeader(bytes);
             return ReadBody(bytes, BodyLen);
         }
 
-        public void Send<T>(NetPeer peer,EDeliveryMethod eMethod, T message) where T: Message
+        public void Send<T>(NetPeer peer,EDeliveryMethod eMethod, T message) where T: class
         {
             var (header, body) = Encode(message);
             var Data = new byte[header.Length + body.Length];
@@ -44,7 +46,7 @@ namespace Networking{
         }
 
         //Reads the body from the buffer and returns with the decoded message.
-        private TMessageType ReadBody(byte[] buffer, int BodyLength)
+        private TBaseMessageType ReadBody(byte[] buffer, int BodyLength)
         {
             byte[] BodyBytes= new byte[BodyLength];
             Array.Copy(buffer,HEADER_SIZE,BodyBytes,0,BodyLength);
@@ -57,11 +59,18 @@ namespace Networking{
             if (messageLength < 1)
                 throw new ArgumentOutOfRangeException("Invalid Message Length");
         }
-
-        //Decodes the message.
-        protected abstract TMessageType Decode(byte[] Message);
-
-        //Encodes the message.
-        protected abstract byte[] EncodeBody<T>(T message);
+        //Decodes the message
+        protected TBaseMessageType Decode(byte[] Message)
+        {
+            var memstream = new MemoryStream(Message);
+            return Serializer.Deserialize<TBaseMessageType>(memstream);
+        }
+        //Encodes the message
+        protected byte[] EncodeBody<T>(T message)
+        {
+            var memstream = new MemoryStream();
+            Serializer.Serialize(memstream, message);
+            return memstream.ToArray();
+        }
     }
 }

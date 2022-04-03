@@ -9,9 +9,7 @@ namespace Networking
     public interface IClient: IUpdatable
     {
         bool IsConnected { get; }
-        void Bind<TController>();
         void Disconnect();
-        void StartClientLoopOnNewThread();
-        void Send<T>(T msg) where T : Message;
+        void Send<T>(T msg) where T : class;
     }
 }

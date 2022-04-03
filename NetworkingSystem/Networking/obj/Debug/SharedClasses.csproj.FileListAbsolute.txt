@@ -1,9 +1,0 @@
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\bin\Debug\SharedClasses.dll
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\bin\Debug\SharedClasses.pdb
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\obj\Debug\SharedClasses.csproj.AssemblyReference.cache
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\obj\Debug\SharedClasses.csproj.CoreCompileInputs.cache
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\obj\Debug\SharedClasses.dll
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\obj\Debug\SharedClasses.pdb
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\bin\Debug\Newtonsoft.Json.dll
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\bin\Debug\Newtonsoft.Json.xml
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\SharedClasses\obj\Debug\SharedClasses.csproj.CopyComplete

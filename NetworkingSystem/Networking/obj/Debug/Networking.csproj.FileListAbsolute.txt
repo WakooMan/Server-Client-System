@@ -1,7 +1,88 @@
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
-C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\MultiplayerCustomBattle\bin\Win64_Shipping_Client\Networking.dll
-C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\MultiplayerCustomBattle\bin\Win64_Shipping_Client\Networking.pdb
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CopyComplete
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.dll
-C:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.pdb
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\CoopTestMod\bin\Win64_Shipping_Client\Networking.dll
+C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\CoopTestMod\bin\Win64_Shipping_Client\Networking.pdb
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.CopyComplete
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.pdb
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\Networking.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\Networking.pdb
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\LiteNetLib.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.Core.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Buffers.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Collections.Immutable.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Memory.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\LiteNetLib.pdb
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\LiteNetLib.xml
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.xml
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.Core.xml
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Collections.Immutable.xml
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Numerics.Vectors.dll
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Buffers.xml
+C:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Numerics.Vectors.xml
+E:\M&B\1.7.0\Mount & Blade II Bannerlord\Modules\CoopTestMod\bin\Win64_Shipping_Client\Networking.dll
+E:\M&B\1.7.0\Mount & Blade II Bannerlord\Modules\CoopTestMod\bin\Win64_Shipping_Client\Networking.pdb
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.CopyComplete
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.pdb
+D:\Programok\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\CoopTestMod\bin\Win64_Shipping_Client\Networking.dll
+D:\Programok\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\CoopTestMod\bin\Win64_Shipping_Client\Networking.pdb
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\Networking.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\Networking.pdb
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\LiteNetLib.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.Core.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Buffers.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Collections.Immutable.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Memory.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Numerics.Vectors.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\LiteNetLib.pdb
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\LiteNetLib.xml
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.xml
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\protobuf-net.Core.xml
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Buffers.xml
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Collections.Immutable.xml
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Numerics.Vectors.xml
+E:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
+D:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
+D:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.csproj.CopyComplete
+D:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.dll
+D:\Github Repos\Egyéb\M&B Main COOP\BannerlordCoop\source\Networking\obj\Debug\Networking.pdb
+E:\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\MultiplayerCustomBattle\bin\Win64_Shipping_Client\Networking.dll
+E:\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\MultiplayerCustomBattle\bin\Win64_Shipping_Client\Networking.pdb
+E:\Github Repos\Egyéb\MultiplayerCustomBattleMod\MultiCustomBattle\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
+E:\Github Repos\Egyéb\MultiplayerCustomBattleMod\MultiCustomBattle\Networking\obj\Debug\Networking.csproj.CopyComplete
+E:\Github Repos\Egyéb\MultiplayerCustomBattleMod\MultiCustomBattle\Networking\obj\Debug\Networking.dll
+E:\Github Repos\Egyéb\MultiplayerCustomBattleMod\MultiCustomBattle\Networking\obj\Debug\Networking.pdb
+E:\Github Repos\Egyéb\MultiplayerCustomBattleMod\MultiCustomBattle\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CopyComplete
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\obj\Debug\Networking.pdb
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\Networking.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\Networking.pdb
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\LiteNetLib.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\protobuf-net.Core.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\protobuf-net.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Buffers.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Collections.Immutable.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Memory.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Numerics.Vectors.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\LiteNetLib.pdb
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\LiteNetLib.xml
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\protobuf-net.xml
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\protobuf-net.Core.xml
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Buffers.xml
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Collections.Immutable.xml
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Memory.xml
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Numerics.Vectors.xml
+E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

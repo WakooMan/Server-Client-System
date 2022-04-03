@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 using LiteNetLib;
-using Networking.Protobuf;
 
 namespace Networking
 {
@@ -44,7 +43,7 @@ namespace Networking
 
         public void OnPeerConnected(NetPeer peer)
         {
-            ProtobufChannel<TBaseMessageType> connection = new ProtobufChannel<TBaseMessageType>();
+            NetworkChannel<TBaseMessageType> connection = new NetworkChannel<TBaseMessageType>();
             connection.SetPeer(peer);
             peer.Tag = connection;
             OnConnectedInvokeMethod(connection);

@@ -1,17 +1,16 @@
 ﻿using LiteNetLib;
-using Networking.Protobuf;
 using System;
 using System.Net;
 using System.Net.Sockets;
 
 namespace Networking
 {
-    public class LiteNetListenerServer<TBaseMessageType> : INetEventListener
+    public class LiteNetListenerServer<TBaseMessageType> : INetEventListener where TBaseMessageType : class
     {
         private readonly IServer Server;
-        private readonly Action OnClientConnectedInvokeFunction;
-        private readonly Action OnClientDisconnectedInvokeFunction;
-        public LiteNetListenerServer(IServer server, Action _OnClientConnectedInvokeFunction, Action _OnClientDisconnectedInvokeFunction)
+        private readonly Action<INetworkChannel> OnClientConnectedInvokeFunction;
+        private readonly Action<INetworkChannel> OnClientDisconnectedInvokeFunction;
+        public LiteNetListenerServer(IServer server, Action<INetworkChannel> _OnClientConnectedInvokeFunction, Action<INetworkChannel> _OnClientDisconnectedInvokeFunction)
         {
             Server = server;
             OnClientConnectedInvokeFunction = _OnClientConnectedInvokeFunction;
@@ -26,7 +25,6 @@ namespace Networking
             else
             {
                 request.Accept();
-                OnClientConnectedInvokeFunction();
             }
         }
 
@@ -53,15 +51,16 @@ namespace Networking
 
         public void OnPeerConnected(NetPeer peer)
         {
-            ProtobufChannel<TBaseMessageType> con = new ProtobufChannel<TBaseMessageType>();
+            NetworkChannel<TBaseMessageType> con = new NetworkChannel<TBaseMessageType>();
             con.SetPeer(peer);
             peer.Tag = con;
             Server.Connected(con);
+            OnClientConnectedInvokeFunction(con);
         }
 
         public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo)
         {
-            OnClientDisconnectedInvokeFunction();
+            OnClientDisconnectedInvokeFunction(peer.GetConnection());
             peer.GetConnection().Close(); 
         }
     }

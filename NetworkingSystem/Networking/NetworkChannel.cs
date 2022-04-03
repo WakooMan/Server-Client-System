@@ -1,20 +1,15 @@
 ﻿using LiteNetLib;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Networking
 {
-    public class NetworkChannel<TProtocol, TMessageType> : IDisposable, INetworkChannel where TProtocol : Protocol<TMessageType>, new ()
+    public class NetworkChannel<TBaseMessageType> : IDisposable, INetworkChannel
     {
         private NetPeer m_Peer;
         protected bool isDisposed = false;
         public bool IsClosed { get; protected set; } = false;
-        protected readonly TProtocol protocol = new TProtocol();
-        private Action<TMessageType> messageCallback;
+        protected readonly Protocol<TBaseMessageType> protocol = new Protocol<TBaseMessageType>();
+        private Action<INetworkChannel,TBaseMessageType> messageCallback;
         public event EventHandler Closed;
         public NetworkChannel() { }
         public void SetPeer(NetPeer peer) => m_Peer = peer;
@@ -47,17 +42,17 @@ namespace Networking
         public void Receive(byte [] bytes)
         {
             var msg = protocol.Receive(bytes);
-            messageCallback(msg);
+            messageCallback(this,msg);
         }
 
-        public void Send<T>(T Message,EDeliveryMethod eMethod) where T : Message 
+        public void Send<T>(T Message,EDeliveryMethod eMethod) where T : class 
         {
             protocol.Send(m_Peer,eMethod,Message);
         }
 
-        public void OnMessage(Action<TMessageType> p) => messageCallback = p;
+        public void OnMessage(Action<INetworkChannel,TBaseMessageType> p) => messageCallback = p;
 
-        public void OnMessage<TMessageType1>(Action<TMessageType1> p) => OnMessage(p as Action<TMessageType>);
+        public void OnMessage<TBaseMessageType1>(Action<INetworkChannel,TBaseMessageType1> p) => OnMessage(p as Action<INetworkChannel,TBaseMessageType>);
         
     }
 }
