@@ -86,3 +86,27 @@ E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debu
 E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Memory.xml
 E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Numerics.Vectors.xml
 E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Repos\Networking\NetworkingSystem\Networking\obj\Debug\Networking.csproj.AssemblyReference.cache
+D:\Repos\Networking\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CoreCompileInputs.cache
+D:\Repos\Networking\NetworkingSystem\Networking\obj\Debug\Networking.dll
+D:\Repos\Networking\NetworkingSystem\Networking\obj\Debug\Networking.pdb
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\Networking.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\Networking.pdb
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\LiteNetLib.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\protobuf-net.Core.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\protobuf-net.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Buffers.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Collections.Immutable.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Memory.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Numerics.Vectors.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\LiteNetLib.pdb
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\LiteNetLib.xml
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\protobuf-net.xml
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\protobuf-net.Core.xml
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Buffers.xml
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Collections.Immutable.xml
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Memory.xml
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Numerics.Vectors.xml
+D:\Repos\Networking\NetworkingSystem\Networking\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Repos\Networking\NetworkingSystem\Networking\obj\Debug\Networking.csproj.CopyComplete

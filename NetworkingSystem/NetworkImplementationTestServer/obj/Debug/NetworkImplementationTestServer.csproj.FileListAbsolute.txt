@@ -54,3 +54,31 @@ E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkImplementati
 E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.csproj.CopyComplete
 E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.exe
 E:\Github Repos\Egyéb\Server-Client-System\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.pdb
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\NetworkImplementationTestServer.exe.config
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\NetworkImplementationTestServer.exe
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\NetworkImplementationTestServer.pdb
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\Networking.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\protobuf-net.Core.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\protobuf-net.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Buffers.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Collections.Immutable.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Memory.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Numerics.Vectors.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\LiteNetLib.dll
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\Networking.pdb
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\protobuf-net.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\protobuf-net.Core.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Buffers.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Collections.Immutable.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Memory.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Numerics.Vectors.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\LiteNetLib.pdb
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\bin\Debug\LiteNetLib.xml
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.csproj.AssemblyReference.cache
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.csproj.SuggestedBindingRedirects.cache
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.csproj.CoreCompileInputs.cache
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.csproj.CopyComplete
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.exe
+D:\Repos\Networking\NetworkingSystem\NetworkImplementationTestServer\obj\Debug\NetworkImplementationTestServer.pdb

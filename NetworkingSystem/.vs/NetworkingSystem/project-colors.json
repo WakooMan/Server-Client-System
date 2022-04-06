@@ -25,7 +25,12 @@
       "ProjectGuid": "94882fd3-3705-4303-981d-33b550cdb4eb",
       "DisplayName": "Server",
       "ColorIndex": 3
+    },
+    "2b91de06-a688-4302-9ff6-1b77494dfb27": {
+      "ProjectGuid": "2b91de06-a688-4302-9ff6-1b77494dfb27",
+      "DisplayName": "NetworkImplementationTestServer",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 5
 }

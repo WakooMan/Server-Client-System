@@ -64,24 +64,22 @@ namespace Networking.Implementation
         }
         #endregion
         #region Normal Methods,Fields,Properties
-        public void Register<T>(Message.ServerToClientMessageHandlerDelegate<T> handler) where T : Message, new()
+        public void Register(int MessageID, Message.ServerToClientMessageHandlerDelegate handler)
         {
-            FromServerToClientMessageHandlers.Add(((T)Activator.CreateInstance(typeof(T))).MessageId, handler);
+            FromServerToClientMessageHandlers.Add(MessageID, handler);
         }
 
-        public void Register<T>(Message.ClientToServerMessageHandlerDelegate<T> handler) where T : Message, new()
+        public void Register(int MessageID,Message.ClientToServerMessageHandlerDelegate handler)
         {
-            FromClientToServerMessageHandlers.Add(((T)Activator.CreateInstance(typeof(T))).MessageId, handler); 
+            FromClientToServerMessageHandlers.Add(MessageID, handler); 
         }
 
-        public void UnRegister<T>(Message.ServerToClientMessageHandlerDelegate<T> handler) where T : Message, new()
+        public void UnRegister(int MessageID,bool IsServerComponent)
         {
-            FromServerToClientMessageHandlers.Remove(((T)Activator.CreateInstance(typeof(T))).MessageId); 
-        }
-
-        public void UnRegister<T>(Message.ClientToServerMessageHandlerDelegate<T> handler) where T : Message, new()
-        { 
-            FromClientToServerMessageHandlers.Remove(((T)Activator.CreateInstance(typeof(T))).MessageId); 
+            if(IsServerComponent)
+                FromClientToServerMessageHandlers.Remove(MessageID);
+            else
+                FromServerToClientMessageHandlers.Remove(MessageID); 
         }
         #endregion
     }

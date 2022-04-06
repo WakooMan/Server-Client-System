@@ -45,8 +45,8 @@ namespace Networking.Implementation.Messages
             EMethod = eMethod;
         }
 
-        public delegate void ServerToClientMessageHandlerDelegate<T>(T message) where T : Message;
-        public delegate void ClientToServerMessageHandlerDelegate<T>(INetworkChannel peer, T message) where T : Message;
+        public delegate void ServerToClientMessageHandlerDelegate(Message message);
+        public delegate void ClientToServerMessageHandlerDelegate(INetworkChannel peer, Message message);
     }
     [ProtoContract]
     public class Result

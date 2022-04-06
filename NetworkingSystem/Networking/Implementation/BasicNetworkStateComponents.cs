@@ -5,23 +5,8 @@ using System.Linq;
 
 namespace Networking.Implementation
 {
-    public class BasicNetworkStateClientComponent : BaseNetworkStateComponent
+    public class BasicNetworkStateClientComponent : BaseClientNetworkStateComponent
     {
-        public override void AddMessageHandlers(Network network)
-        {
-            network.Register(new Message.ServerToClientMessageHandlerDelegate<KeepAliveResponseMessage>(HandleKeepAliveResponseMessage));
-            network.Register(new Message.ServerToClientMessageHandlerDelegate<NetworkDataResponseMessage>(HandleNetworkDataResponseMessage));
-            network.Register(new Message.ServerToClientMessageHandlerDelegate<PlayerJoinedMessage>(HandlePlayerJoinedMessage));
-            network.Register(new Message.ServerToClientMessageHandlerDelegate<PlayerDisconnectedMessage>(HandlePlayerDisconnectedMessage));
-        }
-
-        public override void RemoveMessageHandlers(Network network)
-        {
-            network.UnRegister(new Message.ServerToClientMessageHandlerDelegate<KeepAliveResponseMessage>(HandleKeepAliveResponseMessage));
-            network.UnRegister(new Message.ServerToClientMessageHandlerDelegate<NetworkDataResponseMessage>(HandleNetworkDataResponseMessage));
-            network.UnRegister(new Message.ServerToClientMessageHandlerDelegate<PlayerJoinedMessage>(HandlePlayerJoinedMessage));
-            network.UnRegister(new Message.ServerToClientMessageHandlerDelegate<PlayerDisconnectedMessage>(HandlePlayerDisconnectedMessage));
-        }
 
         private void HandleKeepAliveResponseMessage(KeepAliveResponseMessage response)
         {
@@ -45,20 +30,8 @@ namespace Networking.Implementation
         }
     }
 
-    public class BasicNetworkStateServerComponent : BaseNetworkStateComponent
+    public class BasicNetworkStateServerComponent : BaseServerNetworkStateComponent
     {
-        public override void AddMessageHandlers(Network network)
-        {
-            network.Register(new Message.ClientToServerMessageHandlerDelegate<KeepAliveRequestMessage>(HandleKeepAliveRequestMessage));
-            network.Register(new Message.ClientToServerMessageHandlerDelegate<NetworkDataRequestMessage>(HandleNetworkDataRequestMessage));
-        }
-
-        public override void RemoveMessageHandlers(Network network)
-        {
-            network.UnRegister(new Message.ClientToServerMessageHandlerDelegate<KeepAliveRequestMessage>(HandleKeepAliveRequestMessage));
-            network.UnRegister(new Message.ClientToServerMessageHandlerDelegate<NetworkDataRequestMessage>(HandleNetworkDataRequestMessage));
-        }
-
         private void HandleKeepAliveRequestMessage(INetworkChannel Channel, KeepAliveRequestMessage request)
         {
             Network.Server.SendTo(Channel.Id, new KeepAliveResponseMessage(new Result(Status.Success)));
