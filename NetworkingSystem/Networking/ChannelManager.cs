@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace Networking
 {
@@ -30,6 +31,14 @@ namespace Networking
             {
                 if (!Id.Equals(ExceptionId))
                     Channels[Id].Send(Message,eMethod);
+            }
+        }
+
+        public void Multicast<T>(List<Guid> Group, T Message, EDeliveryMethod eMethod) where T : class
+        {
+            foreach (Guid ID in Group)
+            {
+                    Channels[ID].Send(Message, eMethod);
             }
         }
 

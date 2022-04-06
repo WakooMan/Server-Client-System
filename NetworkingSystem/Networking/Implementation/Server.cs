@@ -2,6 +2,8 @@
 using System;
 using System.Threading;
 using Networking.Implementation.Messages.FromServerMessages;
+using System.Collections.Generic;
+
 namespace Networking.Implementation
 {
     public class Server : ServerBase<Message>
@@ -91,6 +93,15 @@ namespace Networking.Implementation
         public static void Dispatch(INetworkChannel Channel, Message msg)
         {
             Network.InvokeFromClientMessageHandler(Channel, msg); 
+        }
+
+        public override void Multicast<T>(List<Guid> Group, T Message)
+        {
+            Message msg = Message as Message;
+            if (msg != null)
+                Multicast(Group, Message, msg.EMethod);
+            else
+                throw new NotMessageException();
         }
     }
 }

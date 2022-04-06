@@ -41,7 +41,10 @@ namespace Networking.Implementation
         }
         public Player Search(Guid ID)
         {
-            return players[ID];
+            if (players.ContainsKey(ID))
+                return players[ID];
+            else
+                return null;
         }
     }
 }

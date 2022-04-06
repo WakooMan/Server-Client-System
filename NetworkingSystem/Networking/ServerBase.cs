@@ -1,6 +1,7 @@
 ﻿
 using LiteNetLib;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Networking
@@ -57,6 +58,7 @@ namespace Networking
         protected void SendTo<T>(Guid Id, T Message, EDeliveryMethod EMethod) where T : class => _channelManager.SendTo(Id, Message,EMethod);
 
         protected void Broadcast<T>(Guid ExceptionId,T Message,EDeliveryMethod EMethod) where T : class => _channelManager.Broadcast(ExceptionId, Message,EMethod);
+        protected void Multicast<T>(List<Guid> Group, T Message, EDeliveryMethod EMethod) where T : class => _channelManager.Multicast(Group, Message, EMethod);
 
         //This is called in the application Tick, or in the server loop if the server is running.
         //Virtual, because there we should send the Data that is needed to send real time (for example: player movement in battle) in derived class.
@@ -75,5 +77,6 @@ namespace Networking
         public abstract void SendTo<T>(Guid Id, T Message) where T : class;
 
         public abstract void Broadcast<T>(Guid ExceptionId, T Message) where T : class;
+        public abstract void Multicast<T>(List<Guid> Group, T Message) where T : class;
     }
 }
